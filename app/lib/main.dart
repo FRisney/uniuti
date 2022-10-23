@@ -5,7 +5,6 @@ import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 
-import 'auth/data/usuario_repository.dart';
 import 'routing/route_generator.dart';
 import 'shared/presentation/transicao.dart';
 
