@@ -1,5 +1,4 @@
-import 'package:uniuti_core/uniuti_core.dart';
-import 'package:http_client/http_client.dart';
+part of '../../../http_client.dart';
 
 class RemoteAlunoRepository implements AlunoRepository {
   RemoteAlunoRepository(this.client);

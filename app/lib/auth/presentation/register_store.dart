@@ -1,9 +1,6 @@
-import 'dart:collection';
-
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-import '../../aluno/data/aluno_repository.dart';
 import '../../curso/data/curso_repository.dart';
 
 class RegisterController {
@@ -22,8 +19,8 @@ class RegisterController {
 
   Future<List<Curso>> getAllCursos() async {
     List<Curso> cursos = [];
-    return await ((_cursoRepos['remote']! as RemoteCursoRepository).getAll());
-    // return cursos;
+    cursos = await ((_cursoRepos['remote']! as RemoteCursoRepository).getAll());
+    return cursos;
   }
 
   Future<RegisterState> register(Aluno aluno) async {

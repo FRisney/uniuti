@@ -13,3 +13,4 @@ part 'response.dart';
 part 'remote_client.dart';
 part 'remote_client_impl.dart';
 part 'http_client_impl.dart';
+part 'aluno/data/aluno_repository.dart';
