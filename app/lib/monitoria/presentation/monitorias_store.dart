@@ -1,7 +1,6 @@
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-import '../data/monitoria_repository.dart';
 import 'recents_list_item.dart';
 
 class MonitoriaController {

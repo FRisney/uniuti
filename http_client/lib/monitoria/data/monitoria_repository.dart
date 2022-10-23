@@ -1,5 +1,4 @@
-import 'package:http_client/http_client.dart';
-import 'package:uniuti_core/uniuti_core.dart';
+part of '../../../http_client.dart';
 
 class MonitoriaRemoteRepository implements MonitoriaRepository {
   MonitoriaRemoteRepository(this.client);

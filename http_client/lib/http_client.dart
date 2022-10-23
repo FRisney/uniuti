@@ -17,3 +17,4 @@ part 'aluno/data/aluno_repository.dart';
 part 'auth/data/usuario_repository.dart';
 part 'curso/data/curso_repository.dart';
 part 'disciplina/data/disciplina_repository.dart';
+part 'monitoria/data/monitoria_repository.dart';
