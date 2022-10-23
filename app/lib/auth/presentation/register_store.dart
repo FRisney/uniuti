@@ -1,8 +1,6 @@
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-import '../../curso/data/curso_repository.dart';
-
 class RegisterController {
   RegisterState state = RegisterInitial();
   final _cursoRepos = <String, CursoRepository>{
