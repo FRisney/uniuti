@@ -17,6 +17,7 @@ part 'curso/data/curso_repository.dart';
 part 'curso/data/curso_parser.dart';
 part 'curso/domain/curso.dart';
 part 'curso/exceptions/curso_exceptions.dart';
+part 'disciplina/data/disciplina_parser.dart';
 part 'disciplina/data/disciplina_repository.dart';
 part 'disciplina/domain/disciplina.dart';
 part 'instituicao/data/instituicao_repository.dart';
