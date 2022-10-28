@@ -29,7 +29,4 @@ class DisciplinaRemoteRepository implements DisciplinaRepository {
     }
     return disciplinas;
   }
-
-  @override
-  Future<List<Disciplina>> getMany(RepoFilter filter) => getAll();
 }

@@ -17,12 +17,6 @@ class RemoteAlunoRepository implements AlunoRepository {
   }
 
   @override
-  Future<List<Aluno>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Aluno> performRegister(Aluno aluno) async {
     late Aluno novo;
     final response = await client.post(

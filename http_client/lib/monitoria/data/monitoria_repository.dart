@@ -15,10 +15,4 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
     // TODO: implement getAll
     throw UnimplementedError();
   }
-
-  @override
-  Future<List<Monitoria>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
 }

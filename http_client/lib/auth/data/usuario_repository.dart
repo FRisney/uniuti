@@ -35,9 +35,4 @@ class RemoteUsuarioRepository implements UsuarioRepository {
   Future<List<Usuario>> getAll() async {
     return [];
   }
-
-  @override
-  Future<List<Usuario>> getMany(RepoFilter filter) async {
-    return [];
-  }
 }

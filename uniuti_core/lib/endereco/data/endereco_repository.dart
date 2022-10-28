@@ -21,10 +21,4 @@ class MockEndrecoRepository implements EnderecoRepository {
     // TODO: implement getAll
     throw UnimplementedError();
   }
-
-  @override
-  Future<List<Endereco>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
 }

@@ -13,13 +13,7 @@ class MockDisciplinaRepository implements DisciplinaRepository {
   }
 
   @override
-  Future<List<Disciplina>> getAll() {
-    // TODO: implement getAll
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Disciplina>> getMany(RepoFilter filter) async {
+  Future<List<Disciplina>> getAll() async {
     return [
       await byId(0),
       await byId(1),
@@ -29,4 +23,3 @@ class MockDisciplinaRepository implements DisciplinaRepository {
     ];
   }
 }
-  // TODO: Buscar na API/SQLite

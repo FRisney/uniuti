@@ -15,9 +15,4 @@ class MockCursoRepository implements CursoRepository {
   Future<Curso?> byId(int id) async {
     return Curso(id: id, nome: 'Curso');
   }
-
-  @override
-  Future<List<Curso>> getMany(RepoFilter filter) async {
-    return await getAll();
-  }
 }

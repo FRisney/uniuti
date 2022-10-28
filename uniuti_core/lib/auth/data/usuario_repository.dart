@@ -18,12 +18,6 @@ class MockUsuarioRepository implements UsuarioRepository {
   }
 
   @override
-  Future<List<Usuario>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
-
-  @override
   Future<bool> performLogin(Usuario usuario) async {
     final val = Random().nextInt(2) == 1;
     return val;

@@ -27,9 +27,4 @@ class MockMonitoriaRepository implements MonitoriaRepository {
     }
     return monitorias;
   }
-
-  @override
-  Future<List<Monitoria>> getMany(RepoFilter filter) async {
-    return await getAll();
-  }
 }

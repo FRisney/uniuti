@@ -36,10 +36,4 @@ class MockInstituicaoRepository implements InstituicaoRepository {
     // TODO: implement getAll
     throw UnimplementedError();
   }
-
-  @override
-  Future<List<Instituicao>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
 }

@@ -21,14 +21,4 @@ class RemoteCursoRepository implements CursoRepository {
     }
     return cursos;
   }
-
-  @override
-  Future<List<Curso>> getMany(RepoFilter filter) async {
-    final response = await client.get('/v1/Curso/FindAll', params: {});
-    final cursos = <Curso>[];
-    if (response.statusCode == 204) {
-      throw CursoNaoEncontradoException();
-    }
-    return cursos;
-  }
 }

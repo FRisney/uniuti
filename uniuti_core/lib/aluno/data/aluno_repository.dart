@@ -29,12 +29,6 @@ class MockAlunoRepository implements AlunoRepository {
   }
 
   @override
-  Future<List<Aluno>> getMany(RepoFilter filter) {
-    // TODO: implement getMany
-    throw UnimplementedError();
-  }
-
-  @override
   Future<Aluno> performRegister(Aluno aluno) async {
     return aluno;
   }
