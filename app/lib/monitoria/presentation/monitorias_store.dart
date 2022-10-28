@@ -14,7 +14,7 @@ class MonitoriaController {
   Future<List<RecentsListItem>> getMonitorias() async {
     Monitoria? monitoria;
     for (var repo in _monitoriaRepos.values) {
-      monitoria = await repo.byId(-1);
+      monitoria = await repo.byId('-1');
       if (monitoria != null) {
         break;
       }

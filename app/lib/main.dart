@@ -9,7 +9,7 @@ import 'routing/route_generator.dart';
 import 'shared/presentation/transicao.dart';
 
 Future<void> main() async {
-  final aluno = await MockAlunoRepository().byId(-1);
+  final aluno = await MockAlunoRepository().byId('-1');
   if (aluno == null) {
     throw Exception('Failed to initialize Aluno');
   }

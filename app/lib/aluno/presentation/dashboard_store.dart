@@ -12,7 +12,7 @@ class DashboardStore {
     'remote': MockMonitoriaRepository(),
   };
   Future<List<RecentsListItem>> getRecentes() async {
-    final monitoria = await _monitoriaRepos['localDb']!.byId(-1);
+    final monitoria = await _monitoriaRepos['localDb']!.byId('-1');
     final list = <RecentsListItem>[];
     if (monitoria != null) {
       for (var i = 0; i < 5; i++) {
