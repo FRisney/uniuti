@@ -24,6 +24,7 @@ class AlunoParser {
       celular: map['celular'],
       usuario: null,
       instituicao: map['instituicaoId'],
+      endereco: EnderecoParser.fromMap(map['endereco']),
     );
   }
 }

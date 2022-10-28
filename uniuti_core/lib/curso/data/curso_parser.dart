@@ -5,7 +5,6 @@ abstract class CursoParser {
     return Curso(
       id: map['id'],
       nome: map['nome'],
-      duracao: map['duracao'],
     );
   }
 
@@ -13,7 +12,6 @@ abstract class CursoParser {
     return {
       'id': curso.id,
       'nome': curso.nome,
-      'duracao': curso.duracao,
     };
   }
 

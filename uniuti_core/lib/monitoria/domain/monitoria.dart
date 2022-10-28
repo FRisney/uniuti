@@ -19,8 +19,14 @@ class Monitoria {
     required this.status,
     required this.pendencias,
   }) {
-    assert((prestador != null && solicitante != null) ||
-        (prestador == null && solicitante != null) ||
-        (prestador != null && solicitante == null));
+    if (prestador == null && solicitante == null) {
+      throw SolicitantePrestadorInvalidosException();
+    }
+  }
+
+  int get tipoSolicitacao {
+    var tipo = 1;
+    if (prestador != null && solicitante == null) tipo = 2;
+    return tipo;
   }
 }

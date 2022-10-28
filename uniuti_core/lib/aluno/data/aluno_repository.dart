@@ -10,6 +10,7 @@ class MockAlunoRepository implements AlunoRepository {
     final usuario = await MockUsuarioRepository().byId(-1);
     final curso = await MockCursoRepository().byId(-1);
     final instituicao = await MockInstituicaoRepository().byId(-1);
+    final endereco = await MockEndrecoRepository().byId(-1);
     return Aluno(
       id: -1,
       nome: 'Mock',
@@ -17,6 +18,7 @@ class MockAlunoRepository implements AlunoRepository {
       celular: Contato('1234456789'),
       curso: curso!,
       instituicao: instituicao!,
+      endereco: endereco!,
     );
   }
 

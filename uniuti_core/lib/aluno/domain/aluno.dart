@@ -3,6 +3,7 @@ part of '../../uniuti_core.dart';
 class Aluno {
   int id;
   String nome;
+  Endereco endereco;
   Curso? curso;
   Contato? celular;
   Usuario? usuario;
@@ -10,9 +11,10 @@ class Aluno {
   Aluno({
     required this.id,
     required this.nome,
-    required this.curso,
-    required this.celular,
-    required this.instituicao,
+    required this.endereco,
+    this.curso,
+    this.celular,
     this.usuario,
+    this.instituicao,
   });
 }

@@ -26,26 +26,20 @@ class RemoteAlunoRepository implements AlunoRepository {
   Future<Aluno> performRegister(Aluno aluno) async {
     late Aluno novo;
     final response = await client.post(
-      '/Auth/CreateUser',
+      '/v1/Auth/CreateUser',
       body: {
         "nomeCompleto": aluno.nome,
         "email": aluno.usuario!.login,
         "password": aluno.usuario!.senha,
-        "celular": aluno.celular,
-        "instituicaoId": aluno.instituicao,
-        "cursoId": aluno.curso
+        "celular": aluno.celular?.contato,
+        "instituicaoId": aluno.instituicao?.id,
+        "cursoId": aluno.curso?.id,
+        "endereco": EnderecoParser.toMap(aluno.endereco),
       },
     );
 
     if (response.statusCode == 200) {
-      final obj = response.body;
-      novo = Aluno(
-        celular: aluno.celular,
-        curso: aluno.curso,
-        id: obj['id'],
-        instituicao: aluno.instituicao,
-        nome: obj['nomeCompleto'],
-      );
+      novo = AlunoParser.fromMap(response.body);
     } else {}
     return novo;
   }

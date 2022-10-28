@@ -18,7 +18,16 @@ class MockInstituicaoRepository implements InstituicaoRepository {
     return Instituicao(
       id: id,
       nome: 'InstituicaoMock',
-      contato: Contato('123456789'),
+      contatos: [Contato('123456789')],
+      endereco: Endereco(
+        id: '',
+        cep: '',
+        cidade: '',
+        estado: '',
+        numero: '',
+        pais: '',
+        rua: '',
+      ),
     );
   }
 

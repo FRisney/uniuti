@@ -24,3 +24,7 @@ part 'instituicao/domain/instituicao.dart';
 part 'monitoria/data/monitoria_repository.dart';
 part 'monitoria/domain/monitoria.dart';
 part 'monitoria/domain/status.dart';
+part 'monitoria/exceptions/monitoria_exceptions.dart';
+part 'endereco/domain/endereco.dart';
+part 'endereco/data/endereco_parser.dart';
+part 'endereco/data/endereco_repository.dart';

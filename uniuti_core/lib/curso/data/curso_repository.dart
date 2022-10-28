@@ -6,14 +6,14 @@ class MockCursoRepository implements CursoRepository {
   @override
   Future<List<Curso>> getAll() async {
     return [
-      Curso(id: 01, nome: 'ADS', duracao: 'SIM'),
-      Curso(id: 02, nome: 'ADM', duracao: 'SIM'),
+      Curso(id: 01, nome: 'ADS'),
+      Curso(id: 02, nome: 'ADM'),
     ];
   }
 
   @override
   Future<Curso?> byId(int id) async {
-    return Curso(id: id, nome: 'Curso', duracao: '1');
+    return Curso(id: id, nome: 'Curso');
   }
 
   @override

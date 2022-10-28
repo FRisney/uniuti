@@ -9,7 +9,6 @@ class MockDisciplinaRepository implements DisciplinaRepository {
       id: id,
       nome: 'DisciplinaMock',
       descricao: 'Disciplina teste',
-      periodicidade: 'tempos em tempos',
     );
   }
 
