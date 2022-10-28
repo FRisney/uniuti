@@ -40,19 +40,21 @@ class RemoteClientImpl implements RemoteClient {
       endpoint = '/$endpoint';
     }
     late http.Response response;
-    late Map<String, dynamic> body;
+    late Map<String, dynamic> responseBody;
     try {
       response = await client.post(
         Uri.parse('https://$host$endpoint'),
         params: params,
+        body: jsonEncode(body),
+        headers: {'Content-Type': 'application/json'},
       );
-      body = json.decode(response.body);
+      responseBody = json.decode(response.body);
     } on SocketException catch (e) {
       throw RemoteClientConnectionException(e.toString());
     } catch (e) {
       throw RemoteClientException(e.toString());
     }
-    return Response.fromHttpResponse(response: response, body: body);
+    return Response.fromHttpResponse(response: response, body: responseBody);
   }
 
   addInteceptor(InterceptorContract interceptor) {
