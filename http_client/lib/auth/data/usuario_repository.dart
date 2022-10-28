@@ -1,7 +1,7 @@
 part of '../../../http_client.dart';
 
-class RemoteUsuarioRepository implements UsuarioRepository {
-  RemoteUsuarioRepository(this.client);
+class UsuarioRemoteRepository implements UsuarioRepository {
+  UsuarioRemoteRepository(this.client);
   RemoteClient client;
 
   @override
@@ -27,7 +27,7 @@ class RemoteUsuarioRepository implements UsuarioRepository {
   }
 
   @override
-  Future<Usuario?> byId(int id) async {
+  Future<Usuario?> byId(String id) async {
     return null;
   }
 

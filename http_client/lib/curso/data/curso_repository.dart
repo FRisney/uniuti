@@ -1,11 +1,11 @@
 part of '../../../http_client.dart';
 
-class RemoteCursoRepository implements CursoRepository {
+class CursoRemoteRepository implements CursoRepository {
   final RemoteClient client;
-  RemoteCursoRepository(this.client) : super();
+  CursoRemoteRepository(this.client) : super();
 
   @override
-  Future<Curso?> byId(int id) async {
+  Future<Curso?> byId(String id) async {
     var response = await client.get('/v1/Curso/findbyid/$id', params: {});
     Curso? curso;
     curso = CursoParser.fromMap(response.body);

@@ -7,8 +7,8 @@ abstract class UsuarioRepository implements Repository<Usuario> {
 
 class MockUsuarioRepository implements UsuarioRepository {
   @override
-  Future<Usuario?> byId(int id) async {
-    return Usuario(id: -1, login: 'mock', senha: 'mock@123', token: '');
+  Future<Usuario?> byId(String id) async {
+    return Usuario(id: '-1', login: 'mock', senha: 'mock@123', token: '');
   }
 
   @override

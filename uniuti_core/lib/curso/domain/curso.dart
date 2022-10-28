@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 class Curso {
-  int id;
+  String id;
   String nome;
   Curso({
     required this.id,

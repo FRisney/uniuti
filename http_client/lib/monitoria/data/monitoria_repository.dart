@@ -5,7 +5,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
   RemoteClient client;
 
   @override
-  Future<Monitoria?> byId(int id) {
+  Future<Monitoria?> byId(String id) {
     // TODO: implement byId
     throw UnimplementedError();
   }

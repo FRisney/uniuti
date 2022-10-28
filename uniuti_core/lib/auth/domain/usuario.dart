@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 class Usuario {
-  int id;
+  String id;
   String login;
   String senha;
   String token;

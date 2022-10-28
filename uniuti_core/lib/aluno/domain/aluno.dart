@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 class Aluno {
-  int id;
+  String id;
   String nome;
   Endereco endereco;
   Curso? curso;

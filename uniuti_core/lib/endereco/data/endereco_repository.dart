@@ -4,9 +4,9 @@ abstract class EnderecoRepository implements Repository<Endereco> {}
 
 class MockEndrecoRepository implements EnderecoRepository {
   @override
-  Future<Endereco?> byId(int id) async {
+  Future<Endereco?> byId(String id) async {
     return Endereco(
-      id: '',
+      id: id,
       cep: '',
       cidade: '',
       estado: '',

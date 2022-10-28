@@ -1,11 +1,11 @@
 part of '../../../http_client.dart';
 
-class RemoteAlunoRepository implements AlunoRepository {
-  RemoteAlunoRepository(this.client);
+class AlunoRemoteRepository implements AlunoRepository {
+  AlunoRemoteRepository(this.client);
   final RemoteClient client;
 
   @override
-  Future<Aluno?> byId(int id) {
+  Future<Aluno?> byId(String id) {
     // TODO: implement byId
     throw UnimplementedError();
   }

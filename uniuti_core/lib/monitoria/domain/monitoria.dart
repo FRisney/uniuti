@@ -1,23 +1,21 @@
 part of '../../uniuti_core.dart';
 
 class Monitoria {
-  int id;
+  String id;
   String titulo;
   String descricao;
   Disciplina disciplina;
+  Status status;
   Aluno? prestador;
   Aluno? solicitante;
-  Status status;
-  List<Aluno> pendencias;
   Monitoria({
     required this.id,
     required this.titulo,
     required this.descricao,
     required this.disciplina,
+    required this.status,
     this.prestador,
     this.solicitante,
-    required this.status,
-    required this.pendencias,
   }) {
     if (prestador == null && solicitante == null) {
       throw SolicitantePrestadorInvalidosException();

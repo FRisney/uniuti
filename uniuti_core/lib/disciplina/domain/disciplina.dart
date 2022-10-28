@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 class Disciplina {
-  int id;
+  String id;
   String nome;
   String descricao;
   Disciplina({

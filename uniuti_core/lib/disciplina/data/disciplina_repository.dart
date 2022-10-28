@@ -4,7 +4,7 @@ abstract class DisciplinaRepository implements Repository<Disciplina> {}
 
 class MockDisciplinaRepository implements DisciplinaRepository {
   @override
-  Future<Disciplina> byId(int id) async {
+  Future<Disciplina> byId(String id) async {
     return Disciplina(
       id: id,
       nome: 'DisciplinaMock',
@@ -15,11 +15,11 @@ class MockDisciplinaRepository implements DisciplinaRepository {
   @override
   Future<List<Disciplina>> getAll() async {
     return [
-      await byId(0),
-      await byId(1),
-      await byId(2),
-      await byId(3),
-      await byId(4),
+      await byId('0'),
+      await byId('1'),
+      await byId('2'),
+      await byId('3'),
+      await byId('4'),
     ];
   }
 }

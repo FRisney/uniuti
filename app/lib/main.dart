@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         Provider<RemoteClient>(create: (_) => client),
         Provider<UsuarioRepository>(
           create: (_) {
-            final repo = RemoteUsuarioRepository(client);
+            final repo = UsuarioRemoteRepository(client);
             client.addInteceptor(AuthInterceptor(
                 getToken: () async => widget.aluno.usuario!.token));
             client.setRetryPolicy(RetryPolicyImpl(

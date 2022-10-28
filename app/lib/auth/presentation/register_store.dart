@@ -11,13 +11,13 @@ class RegisterController {
   };
 
   RegisterController(RemoteClient client) {
-    _alunoRepos['remote'] = RemoteAlunoRepository(client);
-    _cursoRepos['remote'] = RemoteCursoRepository(client);
+    _alunoRepos['remote'] = AlunoRemoteRepository(client);
+    _cursoRepos['remote'] = CursoRemoteRepository(client);
   }
 
   Future<List<Curso>> getAllCursos() async {
     List<Curso> cursos = [];
-    cursos = await ((_cursoRepos['remote']! as RemoteCursoRepository).getAll());
+    cursos = await ((_cursoRepos['remote']! as CursoRemoteRepository).getAll());
     return cursos;
   }
 

@@ -6,13 +6,13 @@ abstract class AlunoRepository implements Repository<Aluno> {
 
 class MockAlunoRepository implements AlunoRepository {
   @override
-  Future<Aluno?> byId(int id) async {
-    final usuario = await MockUsuarioRepository().byId(-1);
-    final curso = await MockCursoRepository().byId(-1);
-    final instituicao = await MockInstituicaoRepository().byId(-1);
-    final endereco = await MockEndrecoRepository().byId(-1);
+  Future<Aluno?> byId(String id) async {
+    final usuario = await MockUsuarioRepository().byId('-1');
+    final curso = await MockCursoRepository().byId('-1');
+    final instituicao = await MockInstituicaoRepository().byId('-1');
+    final endereco = await MockEndrecoRepository().byId('-1');
     return Aluno(
-      id: -1,
+      id: '',
       nome: 'Mock',
       usuario: usuario!,
       celular: Contato('1234456789'),

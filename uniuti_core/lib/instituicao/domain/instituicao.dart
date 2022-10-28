@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 class Instituicao {
-  int id;
+  String id;
   String nome;
   final List<Contato> contatos;
   Endereco endereco;
