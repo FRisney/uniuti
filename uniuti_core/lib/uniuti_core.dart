@@ -23,6 +23,7 @@ part 'disciplina/domain/disciplina.dart';
 part 'disciplina/exceptions/disciplina_exceptions.dart';
 part 'instituicao/data/instituicao_repository.dart';
 part 'instituicao/domain/instituicao.dart';
+part 'monitoria/data/monitoria_parser.dart';
 part 'monitoria/data/monitoria_repository.dart';
 part 'monitoria/domain/monitoria.dart';
 part 'monitoria/domain/status.dart';
