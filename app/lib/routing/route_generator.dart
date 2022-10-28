@@ -54,7 +54,8 @@ class RouteGenerator {
         break;
       case FormMonitoriaScreen.route:
         builder = (context) => FormMonitoriaScreen(
-              controller: FormMonitoriaController(context.read()),
+              controller:
+                  FormMonitoriaController(context.read(), context.read()),
             );
         break;
       default:
