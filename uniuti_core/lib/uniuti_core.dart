@@ -20,6 +20,7 @@ part 'curso/exceptions/curso_exceptions.dart';
 part 'disciplina/data/disciplina_parser.dart';
 part 'disciplina/data/disciplina_repository.dart';
 part 'disciplina/domain/disciplina.dart';
+part 'disciplina/exceptions/disciplina_exceptions.dart';
 part 'instituicao/data/instituicao_repository.dart';
 part 'instituicao/domain/instituicao.dart';
 part 'monitoria/data/monitoria_repository.dart';
