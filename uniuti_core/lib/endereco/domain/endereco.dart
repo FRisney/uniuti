@@ -18,4 +18,6 @@ class Endereco {
     required this.estado,
     required this.pais,
   });
+  @override
+  String toString() => '$rua, $numero - $cidade, $estado, $pais';
 }
