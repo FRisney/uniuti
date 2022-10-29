@@ -3,7 +3,7 @@ library http_client;
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_interceptor/http_interceptor.dart';
 import 'package:uniuti_core/uniuti_core.dart';

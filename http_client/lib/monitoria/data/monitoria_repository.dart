@@ -21,7 +21,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
       throw RemoteClientException('Erro inesperado!');
     }
     if (response.statusCode != 203) {
-      for (var disciplina in (response.body['items'] as List)) {
+      for (var disciplina in (response.body['data'] as List)) {
         disciplinas.add(MonitoriaParser.fromMap(disciplina));
       }
     }
