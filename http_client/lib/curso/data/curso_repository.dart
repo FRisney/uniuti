@@ -16,6 +16,9 @@ class CursoRemoteRepository implements CursoRepository {
   Future<List<Curso>> getAll() async {
     var response = await client.get('/v1/Curso/FindAll', params: {});
     List<Curso> cursos = [];
+    if (response.statusCode == 500 || response.statusCode == 204) {
+      throw CursoNaoEncontradoException();
+    }
     for (Map<String, dynamic> json in response.body['data']) {
       cursos.add(CursoParser.fromMap(json));
     }
