@@ -1,10 +1,10 @@
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-import 'recents_list_item.dart';
+import '../presentation/recents_list_item.dart';
 
-class MonitoriaController {
-  MonitoriaController(RemoteClient client)
+class MonitoriaStore {
+  MonitoriaStore(RemoteClient client)
       : _monitoriaRepos = {
           'localDb': MockMonitoriaRepository(),
           'remote': MonitoriaRemoteRepository(client),

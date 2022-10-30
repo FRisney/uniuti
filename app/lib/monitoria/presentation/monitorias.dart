@@ -5,12 +5,12 @@ import 'form_monitoria.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
 import 'recents_list_item.dart';
-import 'monitorias_store.dart';
+import '../application/monitorias_store.dart';
 
 class MonitoriasScreen extends StatelessWidget {
   const MonitoriasScreen({Key? key, required this.controller})
       : super(key: key);
-  final MonitoriaController controller;
+  final MonitoriaStore controller;
   static const String route = '/monitorias';
   @override
   Widget build(BuildContext context) {

@@ -3,16 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
 import '../aluno/presentation/dashboard.dart';
-import '../aluno/presentation/dashboard_store.dart';
+import '../aluno/application/dashboard_store.dart';
 import '../auth/presentation/login.dart';
 import '../auth/presentation/register.dart';
-import '../auth/presentation/register_store.dart';
+import '../auth/application/register_store.dart';
 import '../auth/presentation/signin.dart';
 import '../auth/presentation/splash.dart';
 import '../monitoria/presentation/monitorias.dart';
-import '../monitoria/presentation/monitorias_store.dart';
+import '../monitoria/application/monitorias_store.dart';
 import '../monitoria/presentation/form_monitoria.dart';
-import '../monitoria/presentation/form_monitoria_store.dart';
+import '../monitoria/application/form_monitoria_store.dart';
 import '../monitoria/presentation/monitoria.dart';
 
 class RouteGenerator {
@@ -31,7 +31,7 @@ class RouteGenerator {
         break;
       case RegisterScreen.route:
         builder = (context) => RegisterScreen(
-              controller: RegisterController(context.read()),
+              controller: RegisterStore(context.read()),
               aluno: context.read(),
             );
         break;
@@ -40,7 +40,7 @@ class RouteGenerator {
         break;
       case MonitoriasScreen.route:
         builder = (context) =>
-            MonitoriasScreen(controller: MonitoriaController(context.read()));
+            MonitoriasScreen(controller: MonitoriaStore(context.read()));
         break;
       case MonitoriaScreen.route:
         if (settings.arguments.runtimeType != Monitoria) return null;
@@ -54,8 +54,7 @@ class RouteGenerator {
         break;
       case FormMonitoriaScreen.route:
         builder = (context) => FormMonitoriaScreen(
-              controller:
-                  FormMonitoriaController(context.read(), context.read()),
+              controller: FormMonitoriaStore(context.read(), context.read()),
             );
         break;
       default:

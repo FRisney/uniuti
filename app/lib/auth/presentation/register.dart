@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
-import 'register_store.dart';
+import '../application/register_store.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String route = '/register';
@@ -12,7 +12,7 @@ class RegisterScreen extends StatefulWidget {
   const RegisterScreen(
       {Key? key, required this.controller, required this.aluno})
       : super(key: key);
-  final RegisterController controller;
+  final RegisterStore controller;
   final Aluno aluno;
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();

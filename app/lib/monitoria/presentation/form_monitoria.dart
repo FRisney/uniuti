@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
-import 'form_monitoria_store.dart';
+import '../application/form_monitoria_store.dart';
 
 class FormMonitoriaScreen extends StatelessWidget {
   FormMonitoriaScreen({Key? key, required this.controller}) : super(key: key);
   final _form = GlobalKey<FormState>();
-  final FormMonitoriaController controller;
+  final FormMonitoriaStore controller;
   static const String route = '/formMonitoria';
 
   @override

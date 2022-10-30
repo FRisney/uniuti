@@ -1,7 +1,7 @@
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-class RegisterController {
+class RegisterStore {
   RegisterState state = RegisterInitial();
   final _cursoRepos = <String, CursoRepository>{
     'localDb': MockCursoRepository(),
@@ -10,7 +10,7 @@ class RegisterController {
     'localDb': MockAlunoRepository(),
   };
 
-  RegisterController(RemoteClient client) {
+  RegisterStore(RemoteClient client) {
     _alunoRepos['remote'] = AlunoRemoteRepository(client);
     _cursoRepos['remote'] = CursoRemoteRepository(client);
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import '../../monitoria/presentation/recents_list_item.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
-import 'dashboard_store.dart';
+import '../application/dashboard_store.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen(

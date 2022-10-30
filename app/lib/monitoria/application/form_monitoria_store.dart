@@ -1,13 +1,13 @@
 import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
-class FormMonitoriaController {
+class FormMonitoriaStore {
   final _disciplinaRepos = <String, DisciplinaRepository>{
     'localDb': MockDisciplinaRepository(),
   };
   final Aluno _aluno;
 
-  FormMonitoriaController(this._aluno, RemoteClient client) {
+  FormMonitoriaStore(this._aluno, RemoteClient client) {
     _disciplinaRepos['remote'] = DisciplinaRemoteRepository(client);
   }
 
