@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
+import '../../curso/presentation/selector_field.dart';
 import '../application/register_store.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -45,7 +46,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: uniUtiSloganTextStyle,
                   ),
                 ),
-                dropdown(placeholder: 'Curso'),
+                CursoSelectorButton(aluno: widget.aluno),
                 UniUtiInput(
                   placeholder: 'Nome',
                   save: (str) => widget.aluno.nome = str ?? '',
@@ -116,30 +117,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ),
         ),
       ),
-    );
-  }
-
-  dropdown({required String placeholder}) {
-    return FutureBuilder<List<Curso>>(
-      future: widget.controller.getAllCursos(),
-      builder: (BuildContext context, AsyncSnapshot<List<Curso>> snapshot) {
-        var items = 0;
-        if (snapshot.hasData) items = snapshot.data!.length;
-        return Container(
-          margin: const EdgeInsets.only(bottom: 25),
-          child: DropdownButtonFormField<Curso>(
-            decoration: uniUtiInputDecoration(placeholder),
-            items: List.generate(
-              items,
-              (index) => DropdownMenuItem(
-                child: Text(snapshot.data![index].nome),
-                value: snapshot.data![index],
-              ),
-            ),
-            onChanged: (sel) => dev.log(sel.toString()),
-          ),
-        );
-      },
     );
   }
 
