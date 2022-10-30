@@ -6,6 +6,9 @@ class UniUtiLogo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Verificar exportacao de assets
-    return SvgPicture.asset('assets/logo.svg');
+    return SvgPicture.asset(
+      'assets/logo.svg',
+      package: 'uniuti_styles',
+    );
   }
 }
