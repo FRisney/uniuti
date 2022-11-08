@@ -48,7 +48,15 @@ class RemoteClientImpl implements RemoteClient {
         body: jsonEncode(body),
         headers: {'Content-Type': 'application/json'},
       );
-      responseBody = json.decode(response.body);
+      if (response.statusCode == 404) {
+        responseBody = {
+          'errors': ['Resource Not Found.']
+        };
+      } else if (response.body.isNotEmpty) {
+        responseBody = json.decode(response.body);
+      } else {
+        responseBody = {};
+      }
     } on SocketException catch (e) {
       throw RemoteClientConnectionException(e.toString());
     } catch (e) {

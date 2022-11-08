@@ -19,12 +19,23 @@ class AlunoParser {
   static Aluno fromMap(Map<String, dynamic> map) {
     return Aluno(
       id: map['id'],
-      nome: map['nome'],
+      nome: map['nomeCompleto'],
       curso: map['cursoId'],
-      celular: map['celular'],
-      usuario: null,
+      celular: Contato(map['celular']),
       instituicao: map['instituicaoId'],
       endereco: EnderecoParser.fromMap(map['endereco']),
     );
+  }
+}
+
+extension AlunoParserExtension on Aluno {
+  updateFromMap(Map<String, dynamic> map) {
+    id = map['id'];
+    nome = map['nomeCompleto'];
+    curso = map['cursoId'];
+    celular = Contato(map['celular']);
+    instituicao = map['instituicaoId'];
+    endereco = EnderecoParser.fromMap(map['endereco']);
+    usuario!.id = map['id'];
   }
 }

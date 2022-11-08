@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
+import '../application/login_store.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key, required this.user}) : super(key: key);
-  final Usuario user;
+  const LoginScreen({Key? key, required this.user, required this.store})
+      : super(key: key);
+  final Aluno user;
+  final LoginStore store;
   static const String route = '/login';
 
   @override
@@ -48,19 +52,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(height: 148),
                   UniUtiInput(
                     placeholder: 'Login',
-                    save: (login) => widget.user.login = login ?? '',
-                    valid: (login) => (login == null || login.isEmpty)
-                        ? 'Login Inválido'
-                        : null,
+                    save: widget.user.usuario!.updateLogin,
+                    valid: widget.user.usuario!.validateLogin,
                   ),
                   UniUtiInput(
                     placeholder: 'Senha',
                     password: true,
-                    save: (senha) => widget.user.senha = senha ?? '',
-                    valid: (senha) =>
-                        (senha == null || senha.isEmpty || senha.length < 9)
-                            ? 'Senha Inválida'
-                            : null,
+                    save: widget.user.usuario!.updateSenha,
+                    valid: widget.user.usuario!.validateSenha,
                     last: true,
                     editingComplete: _validateInputs,
                   ),
@@ -77,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 
-  void _validateInputs() {
+  Future<void> _validateInputs() async {
     if (!_formKey.currentState!.validate()) {
       _senhaController.clear();
       setState(() {
@@ -85,6 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
       });
       return;
     }
-    Navigator.of(context).pushReplacementNamed('/dashboard');
+    _formKey.currentState!.save();
+    await widget.store.login(context.read());
+    if (mounted) Navigator.of(context).pushReplacementNamed('/dashboard');
   }
 }

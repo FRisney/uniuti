@@ -1,7 +1,7 @@
 part of '../http_client.dart';
 
 typedef GetApiToken = Future<String> Function();
-typedef RefreshApiToken = Future<bool> Function();
+typedef RefreshApiToken = Future<String?> Function();
 
 class AuthInterceptor implements InterceptorContract {
   final GetApiToken getToken;

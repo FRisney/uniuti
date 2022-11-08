@@ -6,6 +6,7 @@ import '../aluno/presentation/dashboard.dart';
 import '../aluno/application/dashboard_store.dart';
 import '../auth/presentation/login.dart';
 import '../auth/presentation/register.dart';
+import '../auth/application/login_store.dart';
 import '../auth/application/register_store.dart';
 import '../auth/presentation/signin.dart';
 import '../auth/presentation/splash.dart';
@@ -36,7 +37,10 @@ class RouteGenerator {
             );
         break;
       case LoginScreen.route:
-        builder = (context) => LoginScreen(user: context.read());
+        builder = (context) => LoginScreen(
+              user: context.read(),
+              store: LoginStore(context.read()),
+            );
         break;
       case MonitoriasScreen.route:
         builder = (context) =>

@@ -11,4 +11,17 @@ class Usuario {
     required this.senha,
     required this.token,
   });
+
+  String? validateSenha(senha) {
+    return (senha == null || senha.isEmpty || senha.length < 9)
+        ? 'Senha Inválida'
+        : null;
+  }
+
+  void updateSenha(senha) => this.senha = senha ?? '';
+
+  String? validateLogin(login) =>
+      (login == null || login.isEmpty) ? 'Login Inválido' : null;
+
+  void updateLogin(login) => this.login = login ?? '';
 }

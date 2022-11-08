@@ -100,7 +100,7 @@ class DashboardScreen extends StatelessWidget {
                             .textTheme
                             .titleLarge!
                             .copyWith(color: Colors.white)),
-                    Text(aluno.instituicao!.nome,
+                    Text(aluno.instituicao?.nome ?? 'Sem Instituição',
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium!
