@@ -1,10 +1,7 @@
-import 'package:http_client/http_client.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
 class LoginStore {
-  LoginStore(RemoteClient client) {
-    remoteRepo = UsuarioRemoteRepository(client);
-  }
+  LoginStore(this.remoteRepo);
   late final UsuarioRepository remoteRepo;
   Future<LoginState> login(Aluno aluno) async {
     final response = await remoteRepo.performLogin(aluno);

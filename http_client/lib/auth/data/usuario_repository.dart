@@ -20,11 +20,39 @@ class UsuarioRemoteRepository implements UsuarioRepository {
       body: {'email': aluno.usuario!.login, 'password': aluno.usuario!.senha},
     );
     if (response.statusCode >= 400) {
-      return (response.body['errors'] as List).first;
+      String ret = '';
+      if (response.body['errors'].runtimeType == Map) {
+        ret = parseErrorsMap(response.body['errors'], ret);
+      } else if (response.body['errors'].runtimeType == List) {
+        ret = parseErrorsList(response.body['errors'], ret);
+      }
+      return ret;
     }
     aluno.updateFromMap(response.body['data']['usuario']);
     aluno.usuario!.token = response.body['data']['token'];
     return null;
+  }
+
+  String parseErrorsList(List body, String ret) {
+    for (var element in body) {
+      ret += '$element\n';
+    }
+    return ret;
+  }
+
+  String parseErrorsMap(Map body, String ret) {
+    for (var element in body.entries) {
+      ret += '${element.key}: ';
+      for (int i = 0; i < element.value.length; i++) {
+        ret += element.value[i];
+        if (i + 1 == element.value.length) {
+          ret += '\n';
+        } else if (i > 0) {
+          ret += ',\n';
+        }
+      }
+    }
+    return ret;
   }
 
   @override

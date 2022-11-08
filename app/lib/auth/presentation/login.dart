@@ -85,7 +85,20 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     _formKey.currentState!.save();
-    await widget.store.login(context.read());
-    if (mounted) Navigator.of(context).pushReplacementNamed('/dashboard');
+    final state = await widget.store.login(context.read());
+    switch (state.runtimeType) {
+      case FailLoginState:
+        showModalBottomSheet(
+            context: context,
+            builder: (_) => Center(child: Text(state.data as String)));
+        break;
+      case SuccessLoginState:
+        if (mounted) Navigator.of(context).pushReplacementNamed('/dashboard');
+        break;
+      default:
+        showModalBottomSheet(
+            context: context,
+            builder: (_) => const Center(child: CircularProgressIndicator()));
+    }
   }
 }
