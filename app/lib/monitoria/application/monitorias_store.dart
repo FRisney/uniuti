@@ -4,6 +4,8 @@ import 'package:uniuti_core/uniuti_core.dart';
 import '../presentation/recents_list_item.dart';
 
 class MonitoriaStore {
+  var _alunoRepos;
+
   MonitoriaStore(RemoteClient client)
       : _monitoriaRepos = {
           'localDb': MockMonitoriaRepository(),
@@ -12,18 +14,8 @@ class MonitoriaStore {
   final Map<String, MonitoriaRepository> _monitoriaRepos;
 
   Future<List<RecentsListItem>> getMonitorias() async {
-    Monitoria? monitoria;
-    for (var repo in _monitoriaRepos.values) {
-      monitoria = await repo.byId('-1');
-      if (monitoria != null) {
-        break;
-      }
-    }
-    if (monitoria == null) return [];
-    final list = [RecentsListItem(model: monitoria)];
-    for (var i = 0; i < 5; i++) {
-      list.add(RecentsListItem(model: monitoria));
-    }
-    return list;
+    var list = await _monitoriaRepos['remote']!.getAll();
+    list.map((e) => _alunoRepos['remote'].byId(e.solicitante?.id));
+    return list.map((e) => RecentsListItem(model: e)).toList();
   }
 }

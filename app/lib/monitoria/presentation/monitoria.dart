@@ -33,7 +33,7 @@ class MonitoriaScreen extends StatelessWidget {
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
-                'Anunciado em: 01/01/2022',
+                'Anunciado em: ${monitoria.criadoEm}',
                 style: _th.titleSmall,
               ),
             ),

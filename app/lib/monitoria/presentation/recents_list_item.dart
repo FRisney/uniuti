@@ -37,8 +37,7 @@ class RecentsListItem extends StatelessWidget {
                       style: _th.titleMedium,
                     ),
                     Text(
-                      // TODO: Guardar data de anuncio
-                      'Anunciado em: 00/00/0000',
+                      'Anunciado em: ${model.criadoEm}',
                       style: _th.titleSmall,
                       maxLines: 1,
                       overflow: TextOverflow.fade,

@@ -59,6 +59,7 @@ class RouteGenerator {
       case FormMonitoriaScreen.route:
         builder = (context) => FormMonitoriaScreen(
               controller: FormMonitoriaStore(context.read(), context.read()),
+              tipo: settings.arguments as TipoSolicitacao,
             );
         break;
       default:

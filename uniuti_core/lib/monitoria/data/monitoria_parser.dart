@@ -3,10 +3,12 @@ part of '../../uniuti_core.dart';
 abstract class MonitoriaParser {
   static Monitoria fromMap(Map<String, dynamic> map) => Monitoria(
         id: map['id'],
-        titulo: map['titulo'],
+        titulo: map['titulo'] ?? 'Monitoria',
         descricao: map['descricao'],
-        disciplina: map['disciplina'],
-        status: map['status'],
+        disciplina: DisciplinaParser.fromMap(map['disciplina']),
+        instituicao: InstituicaoParser.fromMap(map['disciplina']),
+        status: map['status'] ?? Status('N/A'),
+        criacao: DateTime.parse(map['createdAt']),
       );
 
   static Map<String, dynamic> toMap(Monitoria monitoria) => {

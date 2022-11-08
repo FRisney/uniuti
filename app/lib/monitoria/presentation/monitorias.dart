@@ -1,6 +1,7 @@
 import 'dart:developer' as dev;
 
 import 'package:flutter/material.dart';
+import 'package:uniuti_core/uniuti_core.dart';
 import 'form_monitoria.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
@@ -45,14 +46,20 @@ class MonitoriasScreen extends StatelessWidget {
                   children: [
                     const SizedBox(width: 30),
                     FixedMenuItem(
-                      text: 'Ofertar ajuda',
-                      icon: Icons.local_offer_outlined,
-                      onTap: () => _nav.pushNamed(FormMonitoriaScreen.route),
-                    ),
-                    FixedMenuItem(
                       text: 'Pedir ajuda',
                       icon: Icons.local_offer_outlined,
-                      onTap: () => _nav.pushNamed(FormMonitoriaScreen.route),
+                      onTap: () => _nav.pushNamed(
+                        FormMonitoriaScreen.route,
+                        arguments: TipoSolicitacao.solicitar,
+                      ),
+                    ),
+                    FixedMenuItem(
+                      text: 'Ofertar ajuda',
+                      icon: Icons.local_offer_outlined,
+                      onTap: () => _nav.pushNamed(
+                        FormMonitoriaScreen.route,
+                        arguments: TipoSolicitacao.ofertar,
+                      ),
                     ),
                     FixedMenuItem(
                       text: 'Minhas solicitacoes',

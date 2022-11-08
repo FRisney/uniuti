@@ -4,12 +4,12 @@ class Instituicao {
   String id;
   String nome;
   final List<Contato> contatos;
-  Endereco endereco;
+  Endereco? endereco;
 
   Instituicao({
     required this.id,
     required this.nome,
     required this.contatos,
-    required this.endereco,
+    this.endereco,
   });
 }

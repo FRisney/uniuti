@@ -24,6 +24,7 @@ class RemoteClientImpl implements RemoteClient {
         Uri.parse('https://$host$endpoint'),
         params: params,
       );
+      // TODO: Testar statusCode e retornar mensagem corretoa
       body = json.decode(response.body);
     } on SocketException catch (e) {
       throw RemoteClientConnectionException(e.toString());
