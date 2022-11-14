@@ -37,7 +37,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
       "disciplinaId": monitoria.disciplina.id,
       "instituicaoId": monitoria.instituicao.id,
     });
-    if (response.statusCode >= 400) {
+    if (response.statusCode >= 500) {
       return response.body['erro'];
     }
     if (response.statusCode >= 400) {

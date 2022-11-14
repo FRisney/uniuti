@@ -13,9 +13,17 @@ class InstituicaoRemoteRepository implements InstituicaoRepository {
 
   @override
   Future<List<Instituicao>> getAll() async {
-    final response = await client.get('/v1/Instituicao/FindAll');
+    final Response response;
+    try {
+      response = await client.get('/v1/Instituicao/FindAll');
+    } catch (e) {
+      rethrow;
+    }
     if (response.statusCode >= 400) {
-      throw RemoteClientException('Erro Inesperado');
+      var erro = response.body['errors'];
+      // TODO refinar Exception de erros 400
+      throw RemoteClientException(
+          (erro is List) ? parseErrorsList(erro) : parseErrorsMap(erro));
     }
     final list = <Instituicao>[];
     for (var item in response.body['data']) {

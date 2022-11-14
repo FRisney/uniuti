@@ -22,18 +22,23 @@ class RegisterStore {
   }
 
   Future<RegisterState> register(Aluno aluno) async {
-    final registered = await _alunoRepos['remote']!.performRegister(aluno);
-    return RegisterSuccess(registered);
+    String? message;
+    try {
+      message = await _alunoRepos['remote']!.performRegister(aluno);
+    } on RemoteClientException catch (e) {
+      message = e.message;
+    }
+    if (message != null) {
+      return RegisterFail(message);
+    }
+    return RegisterSuccess();
+  }
   }
 }
 
 abstract class RegisterState {}
 
-class RegisterSuccess implements RegisterState {
-  final Aluno aluno;
-
-  RegisterSuccess(this.aluno);
-}
+class RegisterSuccess implements RegisterState {}
 
 class RegisterFail implements RegisterState {
   final String message;
