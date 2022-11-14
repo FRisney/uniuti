@@ -20,8 +20,21 @@ class Usuario {
 
   void updateSenha(senha) => this.senha = senha ?? '';
 
-  String? validateLogin(login) =>
-      (login == null || login.isEmpty) ? 'Login Inválido' : null;
+  String? validateLogin(String? login) {
+    var rgx = RegExp(r'[a-zA-Z0-9.]+@[a-z]+\.[a-z.]');
+    if (login == null || login.isEmpty || !(rgx.hasMatch(login))) {
+      return 'Email inválido';
+    }
+    return null;
+  }
+
+  String? validateLoginConfirmation(String? confirm) {
+    var ret = validateLogin(confirm);
+    if (ret == null && confirm!.trim() != login) {
+      ret = 'Email não corresponde';
+    }
+    return ret;
+  }
 
   void updateLogin(login) => this.login = login ?? '';
 }

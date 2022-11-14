@@ -2,6 +2,7 @@ library http_client;
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:developer' as dev;
 
 import 'package:meta/meta.dart';
 import 'package:http/http.dart' as http;

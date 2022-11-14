@@ -23,7 +23,9 @@ class AlunoParser {
       curso: map['cursoId'],
       celular: Contato(map['celular']),
       instituicao: map['instituicaoId'],
-      endereco: EnderecoParser.fromMap(map['endereco']),
+      endereco: map['endereco'] == null
+          ? null
+          : EnderecoParser.fromMap(map['endereco']),
     );
   }
 }
@@ -35,7 +37,9 @@ extension AlunoParserExtension on Aluno {
     curso = map['cursoId'];
     celular = Contato(map['celular']);
     instituicao = map['instituicaoId'];
-    endereco = EnderecoParser.fromMap(map['endereco']);
+    endereco = map['endereco'] == null
+        ? null
+        : EnderecoParser.fromMap(map['endereco']);
     usuario!.id = map['id'];
   }
 }

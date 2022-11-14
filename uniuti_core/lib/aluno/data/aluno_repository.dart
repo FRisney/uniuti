@@ -1,7 +1,7 @@
 part of '../../uniuti_core.dart';
 
 abstract class AlunoRepository implements Repository<Aluno> {
-  Future<Aluno> performRegister(Aluno aluno);
+  Future<String?> performRegister(Aluno aluno);
 }
 
 class MockAlunoRepository implements AlunoRepository {
@@ -29,7 +29,7 @@ class MockAlunoRepository implements AlunoRepository {
   }
 
   @override
-  Future<Aluno> performRegister(Aluno aluno) async {
-    return aluno;
+  Future<String?> performRegister(Aluno aluno) async {
+    return null;
   }
 }

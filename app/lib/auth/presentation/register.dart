@@ -44,7 +44,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     style: uniUtiSloganTextStyle,
                   ),
                 ),
-                CursoSelectorButton(aluno: widget.aluno),
+                SelectorButton(
+                  nullMessage: 'Favor selecionar um Curso',
+                  label: 'Curso',
+                  onSaved: widget.aluno.updateCurso,
+                  futureElements: widget.controller.getAllCursos(),
+                  key: ValueKey(widget.aluno.curso?.nome ?? 'Curso'),
+                ),
+                SelectorButton(
+                  nullMessage: 'Favor selecionar uma Instituicao',
+                  label: 'Instituicao',
+                  onSaved: widget.aluno.updateInstituicao,
+                  futureElements: widget.controller.getAllInstituicoes(),
+                  key:
+                      ValueKey(widget.aluno.instituicao?.nome ?? 'Instituicao'),
+                ),
                 UniUtiInput(
                   placeholder: 'Nome',
                   save: (str) => widget.aluno.nome = str ?? '',
@@ -72,33 +86,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   type: TextInputType.emailAddress,
                   onChanged: (email) => widget.aluno.usuario!.login = email,
                   save: (str) => widget.aluno.usuario!.login = str ?? '',
-                  valid: (text) {
-                    var rgx = RegExp(r'[a-zA-Z0-9.]+@[a-z]+\.[a-z.]');
-                    if (text == null || text.isEmpty || !(rgx.hasMatch(text))) {
-                      return 'Email inválido';
-                    }
-                    return null;
-                  },
+                  valid: widget.aluno.usuario!.validateLogin,
                 ),
                 UniUtiInput(
                   placeholder: 'Confirme seu email',
                   type: TextInputType.emailAddress,
-                  valid: (text) {
-                    var rgx = RegExp(r'[a-zA-Z0-9.]+@[a-z]+\.[a-z.]');
-                    if (text == null || text.isEmpty || !(rgx.hasMatch(text))) {
-                      return 'Email inválido';
-                    } else if (widget.aluno.usuario!.login != text) {
-                      return 'Email não corresponde';
-                    }
-                    return null;
-                  },
+                  save: widget.aluno.usuario!.updateLogin,
+                  valid: widget.aluno.usuario!.validateLoginConfirmation,
                 ),
                 UniUtiInput(
                   placeholder: 'Senha',
                   password: true,
                   last: true,
-                  editingComplete: _validateForm,
-                  save: (str) => widget.aluno.usuario!.senha = str ?? '',
+                  save: widget.aluno.usuario!.updateSenha,
                   valid: (text) => (text == null || text.length < 8)
                       ? 'Senha deve ter mais que 8 caracteres'
                       : null,
@@ -125,23 +125,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
       return;
     }
-    showModalBottomSheet(context: context, builder: modalBuilder);
+    _formKey.currentState!.save();
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return FutureBuilder<RegisterState>(
+          future: widget.controller.register(widget.aluno),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return (snapshot.data is RegisterSuccess)
+                  ? Success(snapshot.data as RegisterSuccess)
+                  : Fail(snapshot.data as RegisterFail);
+            }
+            return const Loader();
+          },
+        );
+      },
+    );
     // _formKey.currentState!.save();
     // dev.log(widget.aluno.toString());
     // Navigator.of(context).pushReplacementNamed('/signin');
-  }
-
-  Widget modalBuilder(BuildContext context) {
-    return FutureBuilder<RegisterState>(
-        future: widget.controller.register(widget.aluno),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return (snapshot.data is RegisterSuccess)
-                ? Success(snapshot.data as RegisterSuccess)
-                : Fail(snapshot.data as RegisterFail);
-          }
-          return const Loader();
-        });
   }
 }
 

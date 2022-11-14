@@ -17,8 +17,9 @@ class AlunoRemoteRepository implements AlunoRepository {
   }
 
   @override
-  Future<Aluno> performRegister(Aluno aluno) async {
-    late Aluno novo;
+  Future<String?> performRegister(Aluno aluno) async {
+    dev.log('performRegister: ${DateTime.now().toIso8601String()}',
+        name: 'call');
     final response = await client.post(
       '/v1/Auth/CreateUser',
       body: {
@@ -26,15 +27,22 @@ class AlunoRemoteRepository implements AlunoRepository {
         "email": aluno.usuario!.login,
         "password": aluno.usuario!.senha,
         "celular": aluno.celular?.contato,
-        "instituicaoId": aluno.instituicao?.id,
+        // "instituicaoId": aluno.instituicao?.id,
         "cursoId": aluno.curso?.id,
-        "endereco": EnderecoParser.toMap(aluno.endereco),
+        // "endereco": EnderecoParser.toMap(aluno.endereco),
       },
     );
-
-    if (response.statusCode == 200) {
-      novo = AlunoParser.fromMap(response.body);
-    } else {}
-    return novo;
+    String ret = '';
+    if (response.statusCode >= 500) {
+      return response.body['erro'];
+    } else if (response.statusCode >= 400) {
+      var erro = response.body['errors'];
+      if (erro is List) {
+        return parseErrorsList(erro, ret);
+      } else {
+        return parseErrorsMap(erro, ret);
+      }
+    }
+    return null;
   }
 }

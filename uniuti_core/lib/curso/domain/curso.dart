@@ -7,4 +7,7 @@ class Curso {
     required this.id,
     required this.nome,
   });
+
+  @override
+  String toString() => nome;
 }

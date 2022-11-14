@@ -9,15 +9,19 @@ class RegisterStore {
   final _alunoRepos = <String, AlunoRepository>{
     'localDb': MockAlunoRepository(),
   };
+  final _instituicaoRepos = <String, InstituicaoRepository>{
+    'localDb': MockInstituicaoRepository(),
+  };
 
   RegisterStore(RemoteClient client) {
     _alunoRepos['remote'] = AlunoRemoteRepository(client);
     _cursoRepos['remote'] = CursoRemoteRepository(client);
+    _instituicaoRepos['remote'] = InstituicaoRemoteRepository(client);
   }
 
   Future<List<Curso>> getAllCursos() async {
     List<Curso> cursos = [];
-    cursos = await ((_cursoRepos['remote']! as CursoRemoteRepository).getAll());
+    cursos = await _cursoRepos['remote']!.getAll();
     return cursos;
   }
 
@@ -33,6 +37,11 @@ class RegisterStore {
     }
     return RegisterSuccess();
   }
+
+  Future<List<Instituicao>> getAllInstituicoes() async {
+    List<Instituicao> instituicoes = [];
+    instituicoes = await _instituicaoRepos['remote']!.getAll();
+    return instituicoes;
   }
 }
 

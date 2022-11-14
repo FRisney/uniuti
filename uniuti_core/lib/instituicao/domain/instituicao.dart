@@ -12,4 +12,7 @@ class Instituicao {
     required this.contatos,
     this.endereco,
   });
+
+  @override
+  String toString() => nome;
 }
