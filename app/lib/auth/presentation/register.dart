@@ -1,10 +1,8 @@
-import 'dart:developer' as dev;
-
 import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
-import '../../curso/presentation/selector_field.dart';
+import '../../shared/presentation/selector_field.dart';
 import '../application/register_store.dart';
 
 class RegisterScreen extends StatefulWidget {

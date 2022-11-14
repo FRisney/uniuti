@@ -1,45 +1,48 @@
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
-import 'package:http_client/http_client.dart';
-import 'package:provider/provider.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 
-class CursoSelectorButton extends StatefulWidget {
-  const CursoSelectorButton({Key? key, required this.aluno}) : super(key: key);
-  final Aluno aluno;
-  @override
-  _CursoSelectorButtonState createState() => _CursoSelectorButtonState();
-}
-
-class _CursoSelectorButtonState extends State<CursoSelectorButton> {
+class SelectorButton<T> extends StatelessWidget {
+  const SelectorButton({
+    Key? key,
+    required this.futureElements,
+    required this.label,
+    required this.nullMessage,
+    required this.onSaved,
+  }) : super(key: key);
+  final String label;
+  final String nullMessage;
+  final Future<List<T>> futureElements;
+  final void Function(T?) onSaved;
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<Curso>>(
-      future: CursoRemoteRepository(context.read()).getAll(),
+    return FutureBuilder<List<T>>(
+      future: futureElements,
       builder: (context, snapshot) {
         var items = 0;
         if (snapshot.hasData) {
           items = snapshot.data!.length;
           return Container(
             margin: const EdgeInsets.only(bottom: 25),
-            child: DropdownButtonFormField<Curso>(
-              decoration: uniUtiInputDecoration('Cursos'),
+            child: DropdownButtonFormField<T>(
+              decoration: uniUtiInputDecoration(label),
               items: List.generate(
                 items,
                 (index) => DropdownMenuItem(
                   value: snapshot.data![index],
-                  child: Text(snapshot.data![index].nome),
+                  child: Text(snapshot.data![index].toString()),
                 ),
               ),
-              onSaved: (newValue) => widget.aluno.curso = newValue!,
+              onSaved: onSaved,
               onChanged: (sel) => dev.log(sel.toString()),
+              validator: (sel) => sel == null ? nullMessage : null,
             ),
           );
         } else if (snapshot.hasError) {
-          return CursosLoadError(snapshot.error as CursoException);
+          return LoadErrorField(snapshot.error as UniUtiException);
         }
-        return const LoadingCursos();
+        return const LoadingField();
       },
     );
   }
@@ -64,19 +67,19 @@ class _FakeField extends StatelessWidget {
   }
 }
 
-class CursosLoadError extends StatelessWidget {
-  const CursosLoadError(this.error, {Key? key}) : super(key: key);
-  final CursoException error;
+class LoadErrorField extends StatelessWidget {
+  const LoadErrorField(this.error, {Key? key}) : super(key: key);
+  final UniUtiException error;
   @override
   Widget build(BuildContext context) {
     return _FakeField(child: Text(error.message));
   }
 }
 
-class LoadingCursos extends StatelessWidget {
-  const LoadingCursos({Key? key}) : super(key: key);
+class LoadingField extends StatelessWidget {
+  const LoadingField({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return _FakeField(child: const LinearProgressIndicator(minHeight: 15));
+    return const _FakeField(child: LinearProgressIndicator(minHeight: 15));
   }
 }
