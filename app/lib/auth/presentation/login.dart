@@ -61,7 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     save: widget.user.usuario!.updateSenha,
                     valid: widget.user.usuario!.validateSenha,
                     last: true,
-                    editingComplete: _validateInputs,
                   ),
                   UniUtiPrimaryButton(
                     title: 'Entrar',
@@ -85,12 +84,13 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     _formKey.currentState!.save();
-    final state = await widget.store.login(context.read());
+    final state = await widget.store.login(widget.user);
     switch (state.runtimeType) {
       case FailLoginState:
         showModalBottomSheet(
-            context: context,
-            builder: (_) => Center(child: Text(state.data as String)));
+          context: context,
+          builder: (_) => Center(child: Text((state as FailLoginState).data)),
+        );
         break;
       case SuccessLoginState:
         if (mounted) Navigator.of(context).pushReplacementNamed('/dashboard');
