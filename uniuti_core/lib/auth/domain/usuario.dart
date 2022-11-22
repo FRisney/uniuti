@@ -12,6 +12,8 @@ class Usuario {
     required this.token,
   });
 
+  factory Usuario.empty() => Usuario(id: '', login: '', senha: '', token: '');
+
   String? validateSenha(senha) {
     return (senha == null || senha.isEmpty || senha.length < 9)
         ? 'Senha Inválida'

@@ -9,18 +9,11 @@ import 'routing/route_generator.dart';
 import 'shared/presentation/transicao.dart';
 
 Future<void> main() async {
-  final aluno = await MockAlunoRepository().byId('-1');
-  if (aluno == null) {
-    throw Exception('Failed to initialize Aluno');
-  }
-  runApp(MyApp(
-    aluno: aluno,
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key, required this.aluno}) : super(key: key);
-  final Aluno aluno;
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -28,11 +21,13 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   late final RemoteClientImpl client;
+  late final Aluno aluno;
 
   @override
   void initState() {
     super.initState();
     client = RemoteClientImpl(host: 'uniuti.azurewebsites.net/api');
+    aluno = Aluno.empty();
   }
 
   @override
@@ -45,16 +40,16 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<Aluno>(create: (_) => widget.aluno),
-        Provider<Usuario>(create: (_) => widget.aluno.usuario!),
+        Provider<Aluno>(create: (_) => aluno),
+        Provider<Usuario>(create: (_) => aluno.usuario!),
         Provider<RemoteClient>(create: (_) => client),
         Provider<UsuarioRepository>(
           create: (_) {
             final repo = UsuarioRemoteRepository(client);
-            client.addInteceptor(AuthInterceptor(
-                getToken: () async => widget.aluno.usuario!.token));
+            client.addInteceptor(
+                AuthInterceptor(getToken: () async => aluno.usuario!.token));
             client.setRetryPolicy(
-                RetryPolicyImpl(() async => repo.performLogin(widget.aluno)));
+                RetryPolicyImpl(() async => repo.performLogin(aluno)));
             return repo;
           },
         )

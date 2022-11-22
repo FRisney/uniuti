@@ -5,18 +5,25 @@ class Aluno {
   String nome;
   Endereco? endereco;
   Curso? curso;
-  Contato? celular;
+  Celular? celular;
   Usuario? usuario;
   Instituicao? instituicao;
   Aluno({
     required this.id,
     required this.nome,
-    required this.endereco,
+    this.endereco,
     this.curso,
     this.celular,
     this.usuario,
     this.instituicao,
   });
+
+  factory Aluno.empty() => Aluno(
+        id: '',
+        nome: '',
+        usuario: Usuario.empty(),
+        celular: Celular(''),
+      );
 
   void updateCurso(Curso? novoCurso) {
     curso = novoCurso;
