@@ -9,4 +9,6 @@ class Disciplina {
     required this.nome,
     required this.descricao,
   });
+  @override
+  String toString() => nome;
 }

@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 
+import 'monitoria.dart';
+
 class RecentsListItem extends StatelessWidget {
   const RecentsListItem({Key? key, required this.model}) : super(key: key);
   final Monitoria model;
   @override
   Widget build(BuildContext context) {
-    final _th = Theme.of(context).textTheme;
+    final th = Theme.of(context).textTheme;
     return Material(
       child: InkWell(
-        onTap: () =>
-            Navigator.of(context).pushNamed('/monitoria', arguments: model),
+        onTap: () => Navigator.of(context)
+            .pushNamed(MonitoriaScreen.route, arguments: model),
         child: Container(
           margin: const EdgeInsets.fromLTRB(33, 10, 16, 10),
           child: Row(
@@ -34,11 +36,11 @@ class RecentsListItem extends StatelessWidget {
                       model.titulo,
                       maxLines: 1,
                       overflow: TextOverflow.fade,
-                      style: _th.titleMedium,
+                      style: th.titleMedium,
                     ),
                     Text(
                       'Anunciado em: ${model.criadoEm}',
-                      style: _th.titleSmall,
+                      style: th.titleSmall,
                       maxLines: 1,
                       overflow: TextOverflow.fade,
                     ),

@@ -121,12 +121,25 @@ final uniUtiThemeData = ThemeData(
     ),
   ),
   primarySwatch: UniUtiColors.green,
+  cardTheme: CardTheme(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+  ),
+  bottomSheetTheme: const BottomSheetThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(15),
+        topRight: Radius.circular(15),
+      ),
+    ),
+  ),
 );
 
 final uniUtiPrimaryBtn = ElevatedButton.styleFrom(
   elevation: 5,
-  primary: Colors.black,
-  onPrimary: Colors.white,
+  backgroundColor: Colors.black,
+  foregroundColor: Colors.white,
   shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(10),
   ),

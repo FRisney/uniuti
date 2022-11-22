@@ -5,6 +5,9 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
   RemoteClient client;
 
   @override
+  late Future<Aluno?> Function(String) getAluno;
+
+  @override
   Future<Monitoria?> byId(String id) async {
     final response = await client.get('/api/v1/Monitoria/FindAll');
     if (response.statusCode >= 300) {
@@ -16,16 +19,21 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
   @override
   Future<List<Monitoria>> getAll() async {
     final response = await client.get('/v1/Monitoria/FindAll');
-    final disciplinas = <Monitoria>[];
+    final monitorias = <Monitoria>[];
     if (response.statusCode >= 300) {
       throw RemoteClientException('Erro inesperado!');
     }
     if (response.statusCode != 203) {
-      for (var disciplina in (response.body['data'] as List)) {
-        disciplinas.add(MonitoriaParser.fromMap(disciplina));
+      for (var monitoria in (response.body['data'] as List)) {
+        monitorias.add(MonitoriaParser.fromMap(monitoria));
+      }
+      for (var monitoria in monitorias) {
+        final solicitante = (response.body['data'] as List)
+            .firstWhere((element) => element['id'] == monitoria.id);
+        monitoria.solicitante = await getAluno(solicitante['solicitanteId']);
       }
     }
-    return disciplinas;
+    return monitorias;
   }
 
   @override
@@ -34,8 +42,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
       "solicitanteId": monitoria.solicitante!.id,
       "descricao": monitoria.descricao,
       "tipoSolicitacao": monitoria.tipoSolicitacao,
-      "disciplinaId": monitoria.disciplina.id,
-      "instituicaoId": monitoria.instituicao.id,
+      "disciplinaId": monitoria.disciplina?.id,
     });
     if (response.statusCode >= 500) {
       return response.body['erro'];

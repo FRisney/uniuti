@@ -19,7 +19,13 @@ class FormMonitoriaStore {
     _disciplinaRepos['remote'] = DisciplinaRemoteRepository(client);
     _monitoriaRepos['remote'] = MonitoriaRemoteRepository(client);
     _instituicaoRepos['remote'] = InstituicaoRemoteRepository(client);
-    MockMonitoriaRepository().byId('').then((value) => monitoria = value);
+    monitoria = Monitoria(
+      id: '',
+      descricao: '',
+      criacao: DateTime.now(),
+      status: Status('Em Aberto'),
+      titulo: '',
+    );
   }
 
   Future<List<Instituicao>> getInstituicao() async {

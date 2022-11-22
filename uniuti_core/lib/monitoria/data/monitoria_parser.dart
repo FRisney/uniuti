@@ -6,7 +6,7 @@ abstract class MonitoriaParser {
         titulo: map['titulo'] ?? 'Monitoria',
         descricao: map['descricao'],
         disciplina: DisciplinaParser.fromMap(map['disciplina']),
-        instituicao: InstituicaoParser.fromMap(map['disciplina']),
+        // instituicao: InstituicaoParser.fromMap(map['instituicao']),
         status: map['status'] ?? Status('N/A'),
         criacao: DateTime.parse(map['createdAt']),
       );

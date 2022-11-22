@@ -21,7 +21,7 @@ class AlunoParser {
       id: map['id'],
       nome: map['nomeCompleto'],
       curso: map['cursoId'],
-      celular: Contato(map['celular']),
+      celular: Celular(map['celular']),
       instituicao: map['instituicaoId'],
       endereco: map['endereco'] == null
           ? null
@@ -34,9 +34,11 @@ extension AlunoParserExtension on Aluno {
   updateFromMap(Map<String, dynamic> map) {
     id = map['id'];
     nome = map['nomeCompleto'];
-    curso = map['cursoId'];
-    celular = Contato(map['celular']);
-    instituicao = map['instituicaoId'];
+    celular = Celular(map['celular']);
+    curso = map['cursoId'] == null ? null : CursoParser.fromMap(map['cursoId']);
+    instituicao = map['instituicaoId'] == null
+        ? null
+        : InstituicaoParser.fromMap(map['instituicaoId']);
     endereco = map['endereco'] == null
         ? null
         : EnderecoParser.fromMap(map['endereco']);

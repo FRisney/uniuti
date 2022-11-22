@@ -15,7 +15,7 @@ class MockAlunoRepository implements AlunoRepository {
       id: '',
       nome: 'Mock',
       usuario: usuario!,
-      celular: Contato('1234456789'),
+      celular: Celular('1234456789'),
       curso: curso!,
       instituicao: instituicao!,
       endereco: endereco!,

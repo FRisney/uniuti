@@ -5,9 +5,22 @@ class AlunoRemoteRepository implements AlunoRepository {
   final RemoteClient client;
 
   @override
-  Future<Aluno?> byId(String id) {
-    // TODO: implement byId
-    throw UnimplementedError();
+  Future<Aluno?> byId(String id) async {
+    final response = await client.post(
+      '/Usuario/get-user-by-id',
+      params: {'email': id},
+    );
+    if (response.statusCode >= 500) {
+      throw RemoteClientException(response.body['erro']);
+    } else if (response.statusCode >= 400) {
+      var erro = response.body['errors'];
+      if (erro is List) {
+        throw RemoteClientException(parseErrorsList(erro));
+      } else {
+        throw RemoteClientException(parseErrorsMap(erro));
+      }
+    }
+    return AlunoParser.fromMap(response.body);
   }
 
   @override
@@ -27,11 +40,14 @@ class AlunoRemoteRepository implements AlunoRepository {
         "email": aluno.usuario!.login,
         "password": aluno.usuario!.senha,
         "celular": aluno.celular?.contato,
-        // "instituicaoId": aluno.instituicao?.id,
+        "instituicaoId": aluno.instituicao?.id,
         "cursoId": aluno.curso?.id,
-        // "endereco": EnderecoParser.toMap(aluno.endereco),
+        "endereco": aluno.endereco == null
+            ? null
+            : EnderecoParser.toMap(aluno.endereco!),
       },
     );
+    aluno.usuario!.senha = '';
     String ret = '';
     if (response.statusCode >= 500) {
       return response.body['erro'];

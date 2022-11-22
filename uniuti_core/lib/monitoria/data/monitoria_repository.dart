@@ -2,9 +2,14 @@ part of '../../uniuti_core.dart';
 
 abstract class MonitoriaRepository implements Repository<Monitoria> {
   Future<String?> publicar(Monitoria monitoria);
+  late Future<Aluno?> Function(String) getAluno;
+  // Future<Aluno> getAluno(String id);
 }
 
 class MockMonitoriaRepository implements MonitoriaRepository {
+  @override
+  late Future<Aluno?> Function(String) getAluno;
+
   @override
   Future<Monitoria> byId(String id) async {
     final aluno = await MockAlunoRepository().byId('');
@@ -16,7 +21,6 @@ class MockMonitoriaRepository implements MonitoriaRepository {
       descricao:
           'Um produto/monitoria com uma Descricao bem descrita e que parece que nao acaba nunca',
       disciplina: disciplina,
-      instituicao: instituicao!,
       solicitante: aluno,
       status: Status('OK'),
       criacao: DateTime.now(),
@@ -37,4 +41,9 @@ class MockMonitoriaRepository implements MonitoriaRepository {
     // TODO: implement publicar
     throw UnimplementedError();
   }
+
+  // @override
+  // Future<Aluno> getAluno(String id) async {
+  //   return Aluno.empty()..id = id;
+  // }
 }

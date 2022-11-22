@@ -5,7 +5,6 @@ import 'package:uniuti_core/uniuti_core.dart';
 import 'form_monitoria.dart';
 
 import 'package:uniuti_styles/uniuti_styles.dart';
-import 'recents_list_item.dart';
 import '../application/monitorias_store.dart';
 
 class MonitoriasScreen extends StatelessWidget {
@@ -53,14 +52,14 @@ class MonitoriasScreen extends StatelessWidget {
                         arguments: TipoSolicitacao.solicitar,
                       ),
                     ),
-                    FixedMenuItem(
-                      text: 'Ofertar ajuda',
-                      icon: Icons.local_offer_outlined,
-                      onTap: () => _nav.pushNamed(
-                        FormMonitoriaScreen.route,
-                        arguments: TipoSolicitacao.ofertar,
-                      ),
-                    ),
+                    // FixedMenuItem(
+                    //   text: 'Ofertar ajuda',
+                    //   icon: Icons.local_offer_outlined,
+                    //   onTap: () => _nav.pushNamed(
+                    //     FormMonitoriaScreen.route,
+                    //     arguments: TipoSolicitacao.ofertar,
+                    //   ),
+                    // ),
                     FixedMenuItem(
                       text: 'Minhas solicitacoes',
                       icon: Icons.local_offer_outlined,
@@ -86,7 +85,8 @@ class MonitoriasScreen extends StatelessWidget {
             ),
           ),
           // TODO: Utilizar outro metodo de build da lista a fim de mostrar itens sob demanda
-          FutureBuilder<List<RecentsListItem>>(
+          FutureBuilder(
+            key: const ValueKey('MonitListing'),
             future: controller.getMonitorias(),
             builder: (context, snap) {
               if (snap.connectionState == ConnectionState.done) {
