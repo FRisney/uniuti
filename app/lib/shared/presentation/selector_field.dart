@@ -31,7 +31,11 @@ class SelectorButton<T> extends StatelessWidget {
                 items,
                 (index) => DropdownMenuItem(
                   value: snapshot.data![index],
-                  child: Text(snapshot.data![index].toString()),
+                  child: Text(
+                    snapshot.data![index].toString(),
+                    overflow: TextOverflow.fade,
+                    maxLines: 1,
+                  ),
                 ),
               ),
               onSaved: onSaved,

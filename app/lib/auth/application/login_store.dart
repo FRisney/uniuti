@@ -4,7 +4,7 @@ class LoginStore {
   LoginStore(this.remoteRepo);
   late final UsuarioRepository remoteRepo;
   Future<LoginState> login(Aluno aluno) async {
-    final response;
+    String? response;
     try {
       response = await remoteRepo.performLogin(aluno);
     } catch (e) {

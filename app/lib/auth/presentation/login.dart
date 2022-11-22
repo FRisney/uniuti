@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 import '../application/login_store.dart';
@@ -84,21 +83,28 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
     _formKey.currentState!.save();
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
     final state = await widget.store.login(widget.user);
-    switch (state.runtimeType) {
-      case FailLoginState:
-        showModalBottomSheet(
-          context: context,
-          builder: (_) => Center(child: Text((state as FailLoginState).data)),
-        );
-        break;
-      case SuccessLoginState:
-        if (mounted) Navigator.of(context).pushReplacementNamed('/dashboard');
-        break;
-      default:
-        showModalBottomSheet(
-            context: context,
-            builder: (_) => const Center(child: CircularProgressIndicator()));
-    }
+    if (mounted) Navigator.of(context).pop();
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        switch (state.runtimeType) {
+          case FailLoginState:
+            return Center(child: Text((state as FailLoginState).data));
+          default:
+            Future.delayed(const Duration(milliseconds: 1500), () {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                '/dashboard',
+                (route) => false,
+              );
+            });
+            return const Center(child: Text('Sucesso!'));
+        }
+      },
+    );
   }
 }

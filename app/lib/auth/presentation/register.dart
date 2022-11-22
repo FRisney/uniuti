@@ -128,23 +128,21 @@ class _RegisterScreenState extends State<RegisterScreen> {
     _formKey.currentState!.save();
     showModalBottomSheet(
       context: context,
+      builder: (context) => const Loader(),
+    );
+    final state = await widget.controller.register(widget.aluno);
+    if (mounted) Navigator.of(context).pop();
+    showModalBottomSheet(
+      context: context,
       builder: (context) {
-        return FutureBuilder<RegisterState>(
-          future: widget.controller.register(widget.aluno),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return (snapshot.data is RegisterSuccess)
-                  ? Success(snapshot.data as RegisterSuccess)
-                  : Fail(snapshot.data as RegisterFail);
-            }
-            return const Loader();
-          },
-        );
+        switch (state.runtimeType) {
+          case RegisterFail:
+            return Fail(state as RegisterFail);
+          default:
+            return Success(state as RegisterSuccess);
+        }
       },
     );
-    // _formKey.currentState!.save();
-    // dev.log(widget.aluno.toString());
-    // Navigator.of(context).pushReplacementNamed('/signin');
   }
 }
 
@@ -153,7 +151,17 @@ class Success extends StatelessWidget {
   final RegisterSuccess state;
 
   @override
-  Widget build(BuildContext context) => const Center(child: Text('Sucesso'));
+  Widget build(BuildContext context) {
+    Future.delayed(
+        const Duration(microseconds: 1500),
+        () => Navigator.of(context)
+            .pushNamedAndRemoveUntil('/login', (route) => false));
+    return Center(
+        child: Text(
+      'Sucesso',
+      style: Theme.of(context).textTheme.headlineSmall,
+    ));
+  }
 }
 
 class Fail extends StatelessWidget {
