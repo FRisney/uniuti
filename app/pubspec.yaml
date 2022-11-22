@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.0.3
   uniuti_core:
     path: ../uniuti_core
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "../uniuti_styles/assets/launch_icon/icon.png"
+  adaptive_icon_background: "../uniuti_styles/assets/launch_icon/bg.png"
+  adaptive_icon_foreground: "../uniuti_styles/assets/launch_icon/fg.png"
