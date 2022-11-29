@@ -22,7 +22,9 @@ class AlunoParser {
       nome: map['nomeCompleto'],
       curso: map['cursoId'],
       celular: Celular(map['celular']),
-      instituicao: map['instituicaoId'],
+      instituicao: map['instituicaoId'] == null
+          ? null
+          : InstituicaoParser.fromMap(map['instituicaoId']),
       endereco: map['endereco'] == null
           ? null
           : EnderecoParser.fromMap(map['endereco']),
@@ -36,9 +38,9 @@ extension AlunoParserExtension on Aluno {
     nome = map['nomeCompleto'];
     celular = Celular(map['celular']);
     curso = map['cursoId'] == null ? null : CursoParser.fromMap(map['cursoId']);
-    instituicao = map['instituicaoId'] == null
+    instituicao = map['instituicao'] == null
         ? null
-        : InstituicaoParser.fromMap(map['instituicaoId']);
+        : InstituicaoParser.fromMap(map['instituicao']);
     endereco = map['endereco'] == null
         ? null
         : EnderecoParser.fromMap(map['endereco']);
