@@ -1,6 +1,7 @@
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CelularCard extends StatelessWidget {
   const CelularCard(this.cel, {Key? key}) : super(key: key);
@@ -24,7 +25,10 @@ class CelularCard extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
-        onTap: () => dev.log('LOL'),
+        onTap: () => launchUrl(
+          Uri.https('wa.me', '/55${cel.contato}'),
+          mode: LaunchMode.externalApplication,
+        ),
       ),
     );
   }
