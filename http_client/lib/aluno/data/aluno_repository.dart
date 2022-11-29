@@ -8,7 +8,7 @@ class AlunoRemoteRepository implements AlunoRepository {
   Future<Aluno?> byId(String id) async {
     final response = await client.post(
       '/Usuario/get-user-by-id',
-      params: {'email': id},
+      params: {'id': id},
     );
     if (response.statusCode >= 500) {
       throw RemoteClientException(response.body['erro']);
