@@ -1,5 +1,6 @@
 import 'dart:developer' as dev;
 import 'package:flutter/material.dart';
+import 'package:uniuti/monitoria/presentation/monitorias.dart';
 import '../../contato/presentation/celular_card.dart';
 import '../../shared/presentation/selector_field.dart';
 
@@ -90,19 +91,15 @@ class _FormMonitoriaScreenState extends State<FormMonitoriaScreen> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Container(
+        return Padding(
           padding: const EdgeInsets.fromLTRB(20, 35, 20, 15),
-          alignment: Alignment.center,
-          child: Text(
-            'Publicando',
-            style: th.headlineMedium,
-          ),
+          child: Text('Publicando ...', style: th.headlineMedium),
         );
       },
     );
     final state = await widget.controller.publicarMonitoria(widget.tipo);
     if (mounted) Navigator.of(context).pop();
-    showModalBottomSheet(
+    await showModalBottomSheet(
       context: context,
       builder: (context) {
         late final String child;
@@ -113,17 +110,14 @@ class _FormMonitoriaScreenState extends State<FormMonitoriaScreen> {
         );
       },
     );
+    if (!mounted) return;
+    Navigator.of(context).pop();
+    Navigator.of(context).pushReplacementNamed(MonitoriasScreen.route);
   }
 
   void dialogoContatar(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(18),
-            topRight: Radius.circular(18),
-          ),
-          side: BorderSide.none),
       builder: (context) {
         return Container(
           margin: const EdgeInsets.fromLTRB(20, 35, 20, 15),

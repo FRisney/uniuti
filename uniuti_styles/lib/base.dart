@@ -129,8 +129,8 @@ final uniUtiThemeData = ThemeData(
   bottomSheetTheme: const BottomSheetThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.only(
-        topLeft: Radius.circular(15),
-        topRight: Radius.circular(15),
+        topLeft: Radius.circular(18),
+        topRight: Radius.circular(18),
       ),
     ),
   ),
