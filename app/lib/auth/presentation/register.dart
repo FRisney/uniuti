@@ -84,8 +84,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 UniUtiInput(
                   placeholder: 'Email',
                   type: TextInputType.emailAddress,
-                  onChanged: (email) => widget.aluno.usuario!.login = email,
-                  save: (str) => widget.aluno.usuario!.login = str ?? '',
+                  onChanged: widget.aluno.usuario!.updateLogin,
+                  save: widget.aluno.usuario!.updateLogin,
                   valid: widget.aluno.usuario!.validateLogin,
                 ),
                 UniUtiInput(
@@ -97,11 +97,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 UniUtiInput(
                   placeholder: 'Senha',
                   password: true,
+                  onChanged: widget.aluno.usuario!.updateSenha,
+                  save: widget.aluno.usuario!.updateSenha,
+                  valid: widget.aluno.usuario!.validateSenha,
+                ),
+                UniUtiInput(
+                  placeholder: 'Confirme sua Senha',
+                  password: true,
                   last: true,
                   save: widget.aluno.usuario!.updateSenha,
-                  valid: (text) => (text == null || text.length < 8)
-                      ? 'Senha deve ter mais que 8 caracteres'
-                      : null,
+                  valid: widget.aluno.usuario!.validateSenhaConfirmation,
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 15),

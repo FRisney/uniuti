@@ -20,6 +20,14 @@ class Usuario {
         : null;
   }
 
+  String? validateSenhaConfirmation(senha) {
+    var ret = validateSenha(senha);
+    if (ret == null && senha != this.senha) {
+      ret = 'Deve ser igual a Senha';
+    }
+    return ret;
+  }
+
   void updateSenha(senha) => this.senha = senha ?? '';
 
   String? validateLogin(String? login) {
