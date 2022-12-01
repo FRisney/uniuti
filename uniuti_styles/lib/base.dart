@@ -134,6 +134,14 @@ final uniUtiThemeData = ThemeData(
       ),
     ),
   ),
+  drawerTheme: const DrawerThemeData(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(80),
+        bottomLeft: Radius.circular(80),
+      ),
+    ),
+  ),
 );
 
 final uniUtiPrimaryBtn = ElevatedButton.styleFrom(

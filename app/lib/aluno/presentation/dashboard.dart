@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:uniuti_core/uniuti_core.dart';
-import '../../monitoria/presentation/recents_list_item.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
+import '../../monitoria/presentation/recents_list_item.dart';
 import '../application/dashboard_store.dart';
+import 'drawer.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen(
@@ -66,31 +67,7 @@ class DashboardScreen extends StatelessWidget {
           )) ??
           false,
       child: Scaffold(
-        drawer: Drawer(
-          child: SingleChildScrollView(
-            child: Container(
-              constraints: BoxConstraints(
-                maxHeight: MediaQuery.of(context).size.height,
-              ),
-              decoration: BoxDecoration(
-                gradient: UniUtiBgGradient3(),
-              ),
-              child: Column(
-                children: [
-                  const DrawerHeader(
-                    child: UniUtiLogo(),
-                  ),
-                  const Expanded(child: Text('LOL')),
-                  Column(
-                    children: const [
-                      Text('Sair'),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
+        drawer: const DashboardDrawer(),
         body: CustomScrollView(
           primary: true,
           slivers: [

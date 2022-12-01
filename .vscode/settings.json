@@ -3,7 +3,7 @@
     "dart.flutterSdkPaths": [
         "/home/felipe/.asdf/install/flutter/3.3.5-stable"
     ],
-    "dart.sdkPath": "/home/felipe/.asdf/install/flutter/3.3.5-stable/bin/cache/dart-stk",
+    "dart.sdkPath": "/home/felipe/.asdf/installs/flutter/3.3.5-stable/bin/cache/dart-sdk",
     "dart.sdkPaths": [
         "/home/felipe/.asdf/install/flutter/3.3.5-stable/bin/cache/dart-stk"
     ]
