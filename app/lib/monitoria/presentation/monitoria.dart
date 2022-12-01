@@ -3,11 +3,15 @@ import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 
 import '../../contato/presentation/celular_card.dart';
+import '../application/monitoria_store.dart';
 
 class MonitoriaScreen extends StatelessWidget {
-  const MonitoriaScreen({Key? key, required this.monitoria}) : super(key: key);
+  const MonitoriaScreen(
+      {Key? key, required this.monitoria, required this.store})
+      : super(key: key);
   static const String route = '/monitoria';
   final Monitoria monitoria;
+  final MonitoriaStore store;
   @override
   Widget build(BuildContext context) {
     final th = Theme.of(context).textTheme;

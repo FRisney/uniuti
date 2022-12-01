@@ -59,10 +59,19 @@ class RouteGenerator {
             controller: DashboardStore(), aluno: context.read());
         break;
       case FormMonitoriaScreen.route:
-        builder = (context) => FormMonitoriaScreen(
+        builder = (context) {
+          if (settings.arguments is TipoSolicitacao) {
+            return FormMonitoriaScreen(
               controller: FormMonitoriaStore(context.read(), context.read()),
               tipo: settings.arguments as TipoSolicitacao,
             );
+          } else {
+            return FormMonitoriaScreen(
+              controller: FormMonitoriaStore(context.read(), context.read(),
+                  settings.arguments as Monitoria),
+            );
+          }
+        };
         break;
       default:
         return null;

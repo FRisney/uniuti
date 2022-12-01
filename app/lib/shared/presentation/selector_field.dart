@@ -10,29 +10,37 @@ class SelectorButton<T> extends StatelessWidget {
     required this.label,
     required this.nullMessage,
     required this.onSaved,
+    this.initialValue,
   }) : super(key: key);
   final String label;
   final String nullMessage;
   final Future<List<T>> futureElements;
   final void Function(T?) onSaved;
+  final T? initialValue;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<T>>(
       future: futureElements,
       builder: (context, snapshot) {
-        var items = 0;
+        var itemCount = 0;
         if (snapshot.hasData) {
-          items = snapshot.data!.length;
+          var items = snapshot.data!;
+          if (initialValue != null) {
+            final removed = items.remove(initialValue);
+            dev.log(removed.toString(), name: 'Removido dupicado');
+          }
+          itemCount = items.length;
           return Container(
             margin: const EdgeInsets.only(bottom: 25),
             child: DropdownButtonFormField<T>(
               decoration: uniUtiInputDecoration(label),
+              value: initialValue,
               items: List.generate(
-                items,
+                itemCount,
                 (index) => DropdownMenuItem(
-                  value: snapshot.data![index],
+                  value: items[index],
                   child: Text(
-                    snapshot.data![index].toString(),
+                    items[index].toString(),
                     overflow: TextOverflow.fade,
                     maxLines: 1,
                   ),

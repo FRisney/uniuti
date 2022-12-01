@@ -9,11 +9,10 @@ import 'package:uniuti_styles/uniuti_styles.dart';
 import '../application/form_monitoria_store.dart';
 
 class FormMonitoriaScreen extends StatefulWidget {
-  const FormMonitoriaScreen(
-      {Key? key, required this.controller, required this.tipo})
+  const FormMonitoriaScreen({Key? key, required this.controller, this.tipo})
       : super(key: key);
   final FormMonitoriaStore controller;
-  final TipoSolicitacao tipo;
+  final TipoSolicitacao? tipo;
   static const String route = '/formMonitoria';
 
   @override
@@ -40,10 +39,16 @@ class _FormMonitoriaScreenState extends State<FormMonitoriaScreen> {
             children: [
               UniUtiTitleInput(
                 placeholder: 'Titulo',
+                initialValue: widget.controller.monitoria.id.isEmpty
+                    ? null
+                    : widget.controller.monitoria.titulo,
                 save: widget.controller.monitoria.updateTitulo,
               ),
               UniUtiDescricaoInput(
                 placeholder: 'Descricao',
+                initialValue: widget.controller.monitoria.id.isEmpty
+                    ? null
+                    : widget.controller.monitoria.descricao,
                 valid: widget.controller.monitoria.validaDescricao,
                 save: widget.controller.monitoria.updateDescricao,
               ),
@@ -53,6 +58,9 @@ class _FormMonitoriaScreenState extends State<FormMonitoriaScreen> {
                 label: 'Disciplina',
                 nullMessage: 'Favor selecionar uma Disciplina!',
                 onSaved: widget.controller.monitoria.updateDisciplina,
+                initialValue: widget.controller.monitoria.id.isEmpty
+                    ? null
+                    : widget.controller.monitoria.disciplina,
               ),
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10),

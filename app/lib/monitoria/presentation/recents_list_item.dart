@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:uniuti/monitoria/presentation/form_monitoria.dart';
 import 'package:uniuti_core/uniuti_core.dart';
 import 'package:uniuti_styles/uniuti_styles.dart';
 
@@ -9,11 +11,21 @@ class RecentsListItem extends StatelessWidget {
   final Monitoria model;
   @override
   Widget build(BuildContext context) {
+    void abrirMonitoria() {
+      final aluno = context.read<Aluno>();
+      late String route;
+      if (model.solicitante == aluno) {
+        route = FormMonitoriaScreen.route;
+      } else {
+        route = MonitoriaScreen.route;
+      }
+      Navigator.of(context).pushNamed(route, arguments: model);
+    }
+
     final th = Theme.of(context).textTheme;
     return Material(
       child: InkWell(
-        onTap: () => Navigator.of(context)
-            .pushNamed(MonitoriaScreen.route, arguments: model),
+        onTap: abrirMonitoria,
         child: Container(
           margin: const EdgeInsets.fromLTRB(33, 10, 16, 10),
           child: Row(

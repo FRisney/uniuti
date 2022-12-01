@@ -3,6 +3,8 @@ library uniuti_core;
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:equatable/equatable.dart';
+
 part 'shared/data/repository.dart';
 part 'shared/exceptions/uniuti_exceptions.dart';
 part 'aluno/data/aluno_parser.dart';

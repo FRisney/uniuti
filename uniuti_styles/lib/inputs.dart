@@ -52,6 +52,7 @@ class UniUtiTitleInput extends StatelessWidget {
     this.valid,
     this.last = false,
     this.editingComplete,
+    this.initialValue,
   }) : super(key: key);
 
   final String placeholder;
@@ -62,6 +63,7 @@ class UniUtiTitleInput extends StatelessWidget {
   final FormFieldSetter<String>? save;
   final FormFieldValidator<String>? valid;
   final VoidCallback? editingComplete;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +73,7 @@ class UniUtiTitleInput extends StatelessWidget {
         style: Theme.of(context).textTheme.headlineLarge,
         textInputAction: last ? TextInputAction.go : TextInputAction.next,
         decoration: uniUtiInputDecoration(placeholder),
+        initialValue: initialValue,
         controller: controller,
         obscureText: password,
         keyboardType: type,
@@ -93,6 +96,7 @@ class UniUtiDescricaoInput extends StatelessWidget {
     this.valid,
     this.last = false,
     this.editingComplete,
+    this.initialValue,
   }) : super(key: key);
 
   final String placeholder;
@@ -103,6 +107,7 @@ class UniUtiDescricaoInput extends StatelessWidget {
   final FormFieldSetter<String>? save;
   final FormFieldValidator<String>? valid;
   final VoidCallback? editingComplete;
+  final String? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +137,7 @@ class UniUtiDescricaoInput extends StatelessWidget {
         validator: valid,
         onEditingComplete: editingComplete,
         textAlign: TextAlign.center,
+        initialValue: initialValue,
       ),
     );
   }

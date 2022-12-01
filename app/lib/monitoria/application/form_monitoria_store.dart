@@ -15,17 +15,21 @@ class FormMonitoriaStore {
   };
   final Aluno _aluno;
 
-  FormMonitoriaStore(this._aluno, RemoteClient client) {
+  FormMonitoriaStore(this._aluno, RemoteClient client, [Monitoria? monitoria]) {
     _disciplinaRepos['remote'] = DisciplinaRemoteRepository(client);
     _monitoriaRepos['remote'] = MonitoriaRemoteRepository(client);
     _instituicaoRepos['remote'] = InstituicaoRemoteRepository(client);
-    monitoria = Monitoria(
-      id: '',
-      descricao: '',
-      criacao: DateTime.now(),
-      status: Status('Em Aberto'),
-      titulo: '',
-    );
+    if (monitoria == null) {
+      this.monitoria = Monitoria(
+        id: '',
+        descricao: '',
+        criacao: DateTime.now(),
+        status: Status('Em Aberto'),
+        titulo: '',
+      );
+    } else {
+      this.monitoria = monitoria;
+    }
   }
 
   Future<List<Instituicao>> getInstituicao() async {
@@ -40,8 +44,8 @@ class FormMonitoriaStore {
     return disciplinas;
   }
 
-  Future<PublicarState> publicarMonitoria(TipoSolicitacao tipo) async {
-    if (tipo == TipoSolicitacao.solicitar) {
+  Future<PublicarState> publicarMonitoria(TipoSolicitacao? tipo) async {
+    if (tipo == TipoSolicitacao.solicitar || tipo == null) {
       monitoria.solicitante = _aluno;
     } else if (tipo == TipoSolicitacao.ofertar) {
       monitoria.prestador = _aluno;

@@ -1,6 +1,6 @@
 part of '../../uniuti_core.dart';
 
-class Aluno {
+class Aluno extends Equatable {
   String id;
   String nome;
   Endereco? endereco;
@@ -32,4 +32,7 @@ class Aluno {
   void updateInstituicao(Instituicao? novaInstituicao) {
     instituicao = novaInstituicao;
   }
+
+  @override
+  List<Object?> get props => [id];
 }

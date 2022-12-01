@@ -10,7 +10,7 @@ import '../application/monitorias_store.dart';
 class MonitoriasScreen extends StatelessWidget {
   const MonitoriasScreen({Key? key, required this.controller})
       : super(key: key);
-  final MonitoriaStore controller;
+  final MonitoriasStore controller;
   static const String route = '/monitorias';
   @override
   Widget build(BuildContext context) {
