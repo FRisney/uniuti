@@ -11,25 +11,28 @@ class CelularCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: ListTile(
-        contentPadding:
-            const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-        leading: const Icon(
-          Icons.contact_phone,
-          size: 48,
-        ),
-        title: Expanded(
-          child: Text(
-            cel.toString(),
-            textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-        ),
+      child: InkWell(
         onTap: () async => Navigator.of(context).pop(
           await launchUrl(
             Uri.https('wa.me', '/55${cel.contato}'),
             mode: LaunchMode.externalApplication,
           ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+          child: Row(children: [
+            const Icon(
+              Icons.contact_phone,
+              size: 48,
+            ),
+            Expanded(
+              child: Text(
+                cel.toString(),
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+          ]),
         ),
       ),
     );
