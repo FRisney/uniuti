@@ -31,12 +31,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   @override
-  void dispose() {
-    client.close();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [

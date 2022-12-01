@@ -10,4 +10,9 @@ abstract class RemoteClient {
     Map<String, dynamic>? params,
     Object? body,
   });
+  Future<Response> put(
+    String endpoint, {
+    Map<String, dynamic>? params,
+    Object? body,
+  });
 }
