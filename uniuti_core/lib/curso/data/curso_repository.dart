@@ -15,4 +15,10 @@ class MockCursoRepository implements CursoRepository {
   Future<Curso?> byId(String id) async {
     return Curso(id: id, nome: 'Curso');
   }
+
+  @override
+  Future<String?> update(Curso model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

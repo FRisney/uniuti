@@ -32,4 +32,10 @@ class MockAlunoRepository implements AlunoRepository {
   Future<String?> performRegister(Aluno aluno) async {
     return null;
   }
+
+  @override
+  Future<String?> update(Aluno model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

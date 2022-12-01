@@ -27,4 +27,10 @@ class MockUsuarioRepository implements UsuarioRepository {
   Future<String?> performRefreshToken(Aluno usuario) {
     return performLogin(usuario);
   }
+
+  @override
+  Future<String?> update(Usuario model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

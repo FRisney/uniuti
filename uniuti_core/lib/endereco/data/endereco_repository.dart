@@ -21,4 +21,10 @@ class MockEndrecoRepository implements EnderecoRepository {
     // TODO: implement getAll
     throw UnimplementedError();
   }
+
+  @override
+  Future<String?> update(Endereco model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

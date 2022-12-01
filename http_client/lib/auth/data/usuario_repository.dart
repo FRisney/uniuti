@@ -42,4 +42,10 @@ class UsuarioRemoteRepository implements UsuarioRepository {
   Future<List<Usuario>> getAll() async {
     return [];
   }
+
+  @override
+  Future<String?> update(Usuario model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

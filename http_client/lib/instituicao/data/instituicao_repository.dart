@@ -31,4 +31,10 @@ class InstituicaoRemoteRepository implements InstituicaoRepository {
     }
     return list;
   }
+
+  @override
+  Future<String?> update(Instituicao model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

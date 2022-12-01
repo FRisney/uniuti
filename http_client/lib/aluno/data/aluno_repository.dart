@@ -61,4 +61,10 @@ class AlunoRemoteRepository implements AlunoRepository {
     }
     return null;
   }
+
+  @override
+  Future<String?> update(Aluno model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

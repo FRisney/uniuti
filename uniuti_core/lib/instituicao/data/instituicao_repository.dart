@@ -36,4 +36,10 @@ class MockInstituicaoRepository implements InstituicaoRepository {
     // TODO: implement getAll
     throw UnimplementedError();
   }
+
+  @override
+  Future<String?> update(Instituicao model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

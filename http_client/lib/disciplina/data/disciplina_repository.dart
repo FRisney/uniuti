@@ -29,4 +29,10 @@ class DisciplinaRemoteRepository implements DisciplinaRepository {
     }
     return disciplinas;
   }
+
+  @override
+  Future<String?> update(Disciplina model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

@@ -22,4 +22,10 @@ class MockDisciplinaRepository implements DisciplinaRepository {
       await byId('4'),
     ];
   }
+
+  @override
+  Future<String?> update(Disciplina model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

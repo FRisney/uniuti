@@ -59,4 +59,34 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
     }
     return null;
   }
+
+  @override
+  Future<String?> update(Monitoria monitoria) async {
+    final response = await client.put(
+      '/v1/Monitoria/Update',
+      body: {
+        "id": monitoria.id,
+        "titulo": monitoria.titulo,
+        "solicitanteId": monitoria.solicitante?.id,
+        "prestadorId": monitoria.prestador?.id,
+        "descricao": monitoria.descricao,
+        "disciplinaId": monitoria.disciplina?.id,
+        "statusSolicitacaco": 1,
+        "tipoSolicitacao": monitoria.tipoSolicitacao
+      },
+    );
+    if (response.statusCode >= 500) {
+      return response.body['erro'];
+    }
+    if (response.statusCode >= 400) {
+      String ret = '';
+      if (response.body['errors'] is Map) {
+        ret = parseErrorsMap(response.body['errors'], ret);
+      } else if (response.body['errors'] is List) {
+        ret = parseErrorsList(response.body['errors'], ret);
+      }
+      return ret;
+    }
+    return null;
+  }
 }

@@ -24,4 +24,10 @@ class CursoRemoteRepository implements CursoRepository {
     }
     return cursos;
   }
+
+  @override
+  Future<String?> update(Curso model) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

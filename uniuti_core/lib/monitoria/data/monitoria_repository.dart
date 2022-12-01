@@ -3,7 +3,6 @@ part of '../../uniuti_core.dart';
 abstract class MonitoriaRepository implements Repository<Monitoria> {
   Future<String?> publicar(Monitoria monitoria);
   late Future<Aluno?> Function(String) getAluno;
-  // Future<Aluno> getAluno(String id);
 }
 
 class MockMonitoriaRepository implements MonitoriaRepository {
@@ -39,6 +38,12 @@ class MockMonitoriaRepository implements MonitoriaRepository {
   @override
   Future<String?> publicar(Monitoria monitoria) {
     // TODO: implement publicar
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<String?> update(Monitoria model) {
+    // TODO: implement update
     throw UnimplementedError();
   }
 
