@@ -20,7 +20,7 @@ class CelularCard extends StatelessWidget {
         ),
         title: Expanded(
           child: Text(
-            cel.contato,
+            cel.toString(),
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.headlineSmall,
           ),
