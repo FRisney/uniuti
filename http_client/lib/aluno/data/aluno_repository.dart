@@ -6,6 +6,7 @@ class AlunoRemoteRepository implements AlunoRepository {
 
   @override
   Future<Aluno?> byId(String id) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Curso.byId');
     final response = await client.post(
       '/Usuario/get-user-by-id',
       params: {'id': id},
@@ -31,8 +32,7 @@ class AlunoRemoteRepository implements AlunoRepository {
 
   @override
   Future<String?> performRegister(Aluno aluno) async {
-    dev.log('performRegister: ${DateTime.now().toIso8601String()}',
-        name: 'call');
+    dev.log(DateTime.now().toIso8601String(), name: 'Aluno.performRegister');
     final response = await client.post(
       '/v1/Auth/CreateUser',
       body: {

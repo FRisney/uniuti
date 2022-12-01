@@ -13,6 +13,7 @@ class InstituicaoRemoteRepository implements InstituicaoRepository {
 
   @override
   Future<List<Instituicao>> getAll() async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Instituicao.getAll');
     final Response response;
     try {
       response = await client.get('/v1/Instituicao/FindAll');

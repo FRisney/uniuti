@@ -6,6 +6,7 @@ class CursoRemoteRepository implements CursoRepository {
 
   @override
   Future<Curso?> byId(String id) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Curso.getAll');
     var response = await client.get('/v1/Curso/findbyid/$id', params: {});
     Curso? curso;
     curso = CursoParser.fromMap(response.body);
@@ -14,6 +15,7 @@ class CursoRemoteRepository implements CursoRepository {
 
   @override
   Future<List<Curso>> getAll() async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Curso.getAll');
     var response = await client.get('/v1/Curso/FindAll', params: {});
     List<Curso> cursos = [];
     if (response.statusCode == 500 || response.statusCode == 204) {

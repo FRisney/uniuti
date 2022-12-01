@@ -18,6 +18,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
 
   @override
   Future<List<Monitoria>> getAll() async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Monitoria.byId');
     final response = await client.get('/v1/Monitoria/FindAll');
     final monitorias = <Monitoria>[];
     if (response.statusCode >= 300) {
@@ -38,6 +39,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
 
   @override
   Future<String?> publicar(Monitoria monitoria) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Monitoria.publicar');
     final response = await client.post('/v1/Monitoria/Create', body: {
       "solicitanteId": monitoria.solicitante!.id,
       "descricao": monitoria.descricao,
@@ -62,6 +64,7 @@ class MonitoriaRemoteRepository implements MonitoriaRepository {
 
   @override
   Future<String?> update(Monitoria monitoria) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Monitoria.update');
     final response = await client.put(
       '/v1/Monitoria/Update',
       body: {

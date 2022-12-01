@@ -6,6 +6,7 @@ class DisciplinaRemoteRepository implements DisciplinaRepository {
 
   @override
   Future<Disciplina?> byId(String id) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Disciplina.byId');
     final response = await client.get('/api/v1/Disciplina/FindById/$id');
     if (response.statusCode >= 300) {
       throw RemoteClientException('Erro inesperado!');
@@ -17,6 +18,7 @@ class DisciplinaRemoteRepository implements DisciplinaRepository {
 
   @override
   Future<List<Disciplina>> getAll() async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Disciplina.getAll');
     final response = await client.get('/v1/Disciplina/FindAll');
     final disciplinas = <Disciplina>[];
     if (response.statusCode >= 300) {

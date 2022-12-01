@@ -6,6 +6,8 @@ class UsuarioRemoteRepository implements UsuarioRepository {
 
   @override
   Future<String?> performRefreshToken(Aluno usuario) async {
+    dev.log(DateTime.now().toIso8601String(),
+        name: 'Usuario.performRefreshToken');
     var response = await client.post('/refresh-login', body: {});
     if (response.statusCode >= 500) {
       throw RemoteClientException(response.reasonPhrase ?? 'Erro inesperado!');
@@ -15,6 +17,7 @@ class UsuarioRemoteRepository implements UsuarioRepository {
 
   @override
   Future<String?> performLogin(Aluno aluno) async {
+    dev.log(DateTime.now().toIso8601String(), name: 'Usuario.performLogin');
     var response = await client.post(
       '/v1/Auth/LoginUser',
       body: {'email': aluno.usuario!.login, 'password': aluno.usuario!.senha},
