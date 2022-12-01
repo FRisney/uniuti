@@ -6,7 +6,7 @@ class AlunoRemoteRepository implements AlunoRepository {
 
   @override
   Future<Aluno?> byId(String id) async {
-    dev.log(DateTime.now().toIso8601String(), name: 'Curso.byId');
+    dev.log(DateTime.now().toIso8601String(), name: 'Aluno.byId');
     final response = await client.post(
       '/Usuario/get-user-by-id',
       params: {'id': id},
