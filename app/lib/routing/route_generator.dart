@@ -10,6 +10,7 @@ import '../auth/application/login_store.dart';
 import '../auth/application/register_store.dart';
 import '../auth/presentation/signin.dart';
 import '../auth/presentation/splash.dart';
+import '../monitoria/application/monitoria_store.dart';
 import '../monitoria/presentation/monitorias.dart';
 import '../monitoria/application/monitorias_store.dart';
 import '../monitoria/presentation/form_monitoria.dart';
@@ -44,12 +45,13 @@ class RouteGenerator {
         break;
       case MonitoriasScreen.route:
         builder = (context) =>
-            MonitoriasScreen(controller: MonitoriaStore(context.read()));
+            MonitoriasScreen(controller: MonitoriasStore(context.read()));
         break;
       case MonitoriaScreen.route:
         if (settings.arguments.runtimeType != Monitoria) return null;
-        builder = (_) => MonitoriaScreen(
+        builder = (context) => MonitoriaScreen(
               monitoria: settings.arguments! as Monitoria,
+              store: MonitoriaStore(context.read()),
             );
         break;
       case DashboardScreen.route:

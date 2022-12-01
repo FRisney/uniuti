@@ -3,8 +3,8 @@ import 'package:uniuti_core/uniuti_core.dart';
 
 import '../presentation/recents_list_item.dart';
 
-class MonitoriaStore {
-  MonitoriaStore(RemoteClient client)
+class MonitoriasStore {
+  MonitoriasStore(RemoteClient client)
       : _monitoriaRepos = {
           'localDb': MockMonitoriaRepository(),
           'remote': MonitoriaRemoteRepository(client),

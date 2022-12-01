@@ -98,10 +98,10 @@ class MonitoriaScreen extends StatelessWidget {
     );
   }
 
-  void dialogoContatar(BuildContext context) {
+  Future<void> dialogoContatar(BuildContext context) async {
     if (monitoria.solicitante == null) return;
     if (monitoria.solicitante!.celular == null) return;
-    showModalBottomSheet(
+    final contacted = await showModalBottomSheet<bool?>(
       context: context,
       builder: (context) {
         return Container(
@@ -110,5 +110,8 @@ class MonitoriaScreen extends StatelessWidget {
         );
       },
     );
+    if (contacted != null && contacted) {
+      store.performUpdate(monitoria);
+    }
   }
 }

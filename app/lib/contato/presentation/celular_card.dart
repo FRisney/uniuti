@@ -25,9 +25,11 @@ class CelularCard extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall,
           ),
         ),
-        onTap: () => launchUrl(
-          Uri.https('wa.me', '/55${cel.contato}'),
-          mode: LaunchMode.externalApplication,
+        onTap: () async => Navigator.of(context).pop(
+          await launchUrl(
+            Uri.https('wa.me', '/55${cel.contato}'),
+            mode: LaunchMode.externalApplication,
+          ),
         ),
       ),
     );
